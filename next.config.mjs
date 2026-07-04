@@ -13,6 +13,12 @@ const nextConfig = {
         hostname: "foxjekapp24.startuptrinity.com",
         port: "",
       },
+
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+        pathname: "/**",
+      },
     ],
   },
 };

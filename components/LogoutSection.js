@@ -1,8 +1,9 @@
-'use client";';
+"use client";
+
 import React from "react";
 import HomeSectionCard from "./HomeSectionCard";
 import { Button } from "./ui/button";
-import { useClerk } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
 const items = [
@@ -10,13 +11,12 @@ const items = [
 ];
 
 const LogoutSection = () => {
-  const { signOut } = useClerk();
+  const { signOut } = useAuth();
   const router = useRouter();
 
   const handleLogout = async () => {
     try {
       await signOut();
-      // Redirect to home page after logout
       router.push("/");
     } catch (error) {
       console.error("Error logging out:", error);

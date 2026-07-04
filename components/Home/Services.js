@@ -8,8 +8,7 @@ const services = [
     category: "Transport",
     description:
       "With taxi booking services, customer has able to book their ride whenever and wherever they want.",
-    image:
-      "https://media.istockphoto.com/id/1413484230/photo/young-woman-ordering-a-ride-to-the-airport-via-smart-phone.jpg?s=2048x2048&w=is&k=20&c=7uwcXlFksl4WGKeTRFPkXUT3zN2fJr86FpwESg5XS4E=",
+    image: "/images/featured-services/taxi-booking.jpg",
   },
 
   {
@@ -17,24 +16,21 @@ const services = [
     category: "Transport",
     description:
       "Do you want to ride a bike? You can book a bike without any hassle and enjoy your ride.",
-    image:
-      "https://media.istockphoto.com/id/1236580926/photo/portrait-of-delivery-man-in-front-of-the-delivery-place-checking-delivery-spreadsheet.jpg?s=2048x2048&w=is&k=20&c=5LavO_ukeIcWNd3dKC5RjPMIM83d9QR3w4QyB2EpcfQ=",
+    image: "/images/featured-services/bike-booking.jpg",
   },
   {
     name: "Food Delivery",
     category: "On-demand",
     description:
       "Get the portion of your favourite meal at your doorstep using the food delivery service.",
-    image:
-      "https://media.istockphoto.com/id/961983276/photo/cropped-shot-of-african-american-barista-holding-disposable-coffee-cups-and-paper-bags-in-cafe.jpg?s=2048x2048&w=is&k=20&c=2c5b6QUzhJo1gXQ4KZ7IXR6d72v9Ig93grNFGd5JU7E=",
+    image: "/images/featured-services/food-delivery.jpg",
   },
   {
     name: "Courier Delivery",
     category: "Transport",
     description:
       "Make sure to send/receive couriers and parcels across the cities or outside.",
-    image:
-      "https://media.istockphoto.com/id/1326431774/photo/happy-african-american-woman-receiving-box-from-courier-at-home.jpg?s=2048x2048&w=is&k=20&c=TrQCUU8Mvs2Wpm4nIcUU_XL90LqLFBAMWvwTzTtORk8=",
+    image: "/images/featured-services/courier-delivery.jpg",
   },
   {
     name: "Grocery Delivery",
@@ -42,16 +38,14 @@ const services = [
 
     description:
       "With grocery delivery service, facilitate ordering fresh groceries from different stores.",
-    image:
-      "https://media.istockphoto.com/id/1572379620/photo/closeup-of-nurse-bringing-bag-with-groceries-to-senior-man-in-wheelchair.jpg?s=2048x2048&w=is&k=20&c=1QAbFZR_pzUoXAlBCwmmqJI5QHgs5vz67EvWl3-zgjI=",
+    image: "/images/featured-services/grocery-delivery.jpg",
   },
   {
     name: "Home Cleaning",
     category: "Handyman",
     description:
       "Need help to clean your home? Make your house clean and tidy with our house cleaning services.",
-    image:
-      "https://media.istockphoto.com/id/1214907685/photo/hands-with-glove-wiping-doorknob.jpg?s=2048x2048&w=is&k=20&c=vle7Wje_yrhaijdGXSyUpC-svwQqaPNDcpQvBs5hmWM=",
+    image: "/images/featured-services/home-cleaning.jpg",
   },
 ];
 

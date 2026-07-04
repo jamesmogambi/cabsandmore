@@ -4,7 +4,7 @@ const ProcessWork = () => {
   return (
     <div className="mb-14">
       <div className="max-w-[1140px] m-auto ">
-        <h2 className="text-center text-titledark text-[32px] mb-7">
+        <h2 className="text-center text-titledark2 text-[32px] mb-7">
           How does Cabs&More Work
         </h2>
 
