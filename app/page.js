@@ -15,23 +15,19 @@ export default function Home() {
       <Banner />
       <Services />
       <ItemServices />
-      <Stores title="Food Delivery" data={foodstores} className="mb-6" />
-      <Stores title="Grocery Stores" data={grocerystores} />
+      <Stores title="Food Delivery" data={[]} className="mb-6" />
+      <Stores title="Grocery Stores" data={[]} />
       <RightSideBanner
         title={"Register Your Self As Provider"}
-        image={
-          "https://foxjekapp24.startuptrinity.com/assets/front/img/register-provider-banner.webp"
-        }
+        image={"/images/provider-registration3.png"}
       />
       <LeftSideBanner
         title={"Register You Store"}
-        image={
-          "https://foxjekapp24.startuptrinity.com/assets/front/img/register-store-banner.webp"
-        }
+        image={"/images/store-registration.png"}
       />
       <RightSideBanner
         title="Register Your Self As Driver / Delivery"
-        image="https://foxjekapp24.startuptrinity.com/assets/front/img/register-driver-banner.webp"
+        image="/images/driver-registration.png"
       />
       <ProcessWork />
     </main>

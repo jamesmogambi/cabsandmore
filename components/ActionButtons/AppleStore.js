@@ -4,7 +4,7 @@ import Link from "next/link";
 const AppleStore = () => {
   return (
     <Link href="">
-      <div className="px-4  flex-row group flex  relative  py-1 gap-3   text-titledark border rounded-xl border-black  cursor-pointer hover:bg-black hover:text-white">
+      <div className="px-4  flex-row group flex  relative  py-1 gap-3   text-titledark  rounded-xl border-black/20 border-[0.5px]  cursor-pointer hover:bg-black hover:text-white">
         <Image
           width={30}
           height={30}

@@ -16,7 +16,7 @@ const Logo = ({ title = "Cabs&More" }) => {
         priority
         quality={60}
       />
-      <h2 className="uppercase text-base font-extrabold tracking-wide text-titledark">
+      <h2 className="uppercase text-lg font-extrabold tracking-wide text-titledark">
         {title}
       </h2>
     </div>
