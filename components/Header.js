@@ -26,6 +26,7 @@ import MobileSideNav from "./MobileSideNav";
 import UserDropDownMenu from "./UserDropDownMenu";
 import LoginModal from "./Modals/LoginModal";
 import OTPVerificationModal from "./Modals/OTPVerificationModal";
+import Logo from "./Logo";
 
 const deliveryServices = [
   {
@@ -166,18 +167,9 @@ const Header = () => {
           }}
           alt="logo"
         /> */}
-        <Image
-          width={200}
-          height={55}
-          src={"/images/logo1.png"}
-          style={{
-            width: "auto",
-            height: "auto",
-          }}
-          alt="logo"
-          priority
-          quality={90}
-        />
+
+        {/* TODO: Replace the logo with the new one */}
+        <Logo />
       </Link>
 
       <NavigationMenu className="hidden md:flex ">
