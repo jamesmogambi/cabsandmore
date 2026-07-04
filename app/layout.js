@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import "react-phone-input-2/lib/style.css";
 import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
+import ServicesWrapper from "@/components/ServicesWrapper";
 
 export default function RootLayout({ children }) {
   return (
@@ -34,11 +35,13 @@ export default function RootLayout({ children }) {
         /> */}
         </Head>
         <body>
-          <div className="min-h-screen flex  flex-col">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <ServicesWrapper>
+            <div className="min-h-screen flex  flex-col">
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </ServicesWrapper>
 
           {/* <ScrollToTop smooth style={{ backgroundColor: "red" }} /> */}
         </body>

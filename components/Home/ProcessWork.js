@@ -2,7 +2,7 @@ import ProcessWorkItem from "./ProcessWorkItem";
 
 const ProcessWork = () => {
   return (
-    <div className="mb-14">
+    <div className="lg:my-15 my-8">
       <div className="max-w-[1140px] m-auto ">
         <h2 className="text-center text-titledark2 text-[32px] mb-7">
           How does Cabs&More Work
