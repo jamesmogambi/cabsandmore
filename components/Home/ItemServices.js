@@ -3,7 +3,7 @@ import ItemServiceCard from "../ItemServiceCard";
 
 const ItemServices = () => {
   return (
-    <div className="flex justify-center items-center bg-[#FAFAFA]">
+    <div className="flex justify-center my-10 py-6 items-center bg-[#FAFAFA]">
       <div className="md:max-w-[1140px] w-full pt-6 pb-8">
         <h1 className="text-black text-center text-[40px] mb-6">
           More Services

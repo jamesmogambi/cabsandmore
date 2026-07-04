@@ -20,7 +20,7 @@ const LeftSideBanner = ({ image, title, className }) => {
           <div className="flex gap-2">
             <GooglePlay />
             <AppleStore />
-            <WebAdmin />
+            {/* <WebAdmin /> */}
           </div>
         </div>
       </div>
