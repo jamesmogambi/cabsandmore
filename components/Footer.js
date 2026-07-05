@@ -11,19 +11,19 @@ import useServicesStore from "@/store/servicesStore";
 const footerLinks = [
   {
     name: "About Us",
-    path: "",
+    path: "/about-us",
   },
   {
     name: "Contact Us",
-    path: "",
+    path: "/contact-us",
   },
   {
     name: "Privacy Policy",
-    path: "",
+    path: "/privacy-policy",
   },
   {
     name: "Terms & Conditions",
-    path: "",
+    path: "/terms",
   },
 ];
 

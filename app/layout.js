@@ -7,6 +7,7 @@ import "react-phone-input-2/lib/style.css";
 import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
 import ServicesWrapper from "@/components/ServicesWrapper";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function RootLayout({ children }) {
   return (
@@ -43,7 +44,7 @@ export default function RootLayout({ children }) {
             </div>
           </ServicesWrapper>
 
-          {/* <ScrollToTop smooth style={{ backgroundColor: "red" }} /> */}
+          <ScrollToTop smooth style={{ backgroundColor: "red" }} />
         </body>
       </html>
     </ClerkProvider>
