@@ -126,7 +126,7 @@ const Footer = () => {
               )}
             </div>
           </div>
-          <div className="p-8 space-y-4 md:space-y-0 w-full md:justify-between md:flex md:flex-col md:flex-1">
+          <div className="p-8 space-y-4  w-full md:justify-between md:flex md:flex-col md:flex-1">
             {/* social media icons */}
             <div className="flex gap-3">
               <Link
@@ -226,7 +226,7 @@ const Footer = () => {
                   quality={75}
                 />
                 <span className="text-titledark2 text-[18px]">
-                  +254701694004
+                  +254743129621
                 </span>
               </div>
             </div>

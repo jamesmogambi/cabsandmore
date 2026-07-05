@@ -8,7 +8,7 @@ const AppleStore = () => {
         <Image
           width={30}
           height={30}
-          src={"/images/app-store-logo-black.webp "}
+          src={"/images/app-store-logo-black.webp"}
           className="object-contain absolute inset-y-0 h-full visible group-hover:invisible "
           alt="play-store-logo"
           quality={75}

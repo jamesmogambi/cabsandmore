@@ -3,8 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    // Test Firebase connection
-    const testDoc = await adminDb.collection("test").doc("connection").get();
+    await adminDb.collection("test").doc("connection").get();
     return NextResponse.json({
       success: true,
       message: "Firebase connection successful",

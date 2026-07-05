@@ -1,13 +1,10 @@
 "use server";
 
-import { adminDb, ensureFirebaseInitialized } from "@/lib/firebase-admin";
+import { adminDb } from "@/lib/firebase-admin";
 import { revalidatePath } from "next/cache";
 
 export async function getUserFromFirestore(clerkId) {
   try {
-    // Ensure Firebase is initialized before using
-    ensureFirebaseInitialized();
-
     if (!clerkId) {
       console.error("No clerkId provided");
       return null;
@@ -26,16 +23,13 @@ export async function getUserFromFirestore(clerkId) {
 
 export async function updateUserInFirestore(clerkId, data) {
   try {
-    // Ensure Firebase is initialized before using
-    ensureFirebaseInitialized();
-
     if (!clerkId) {
       throw new Error("No clerkId provided");
     }
 
     const cleanData = Object.fromEntries(
       Object.entries(data).filter(
-        ([_, value]) => value !== undefined && value !== null,
+        ([, value]) => value !== undefined && value !== null,
       ),
     );
 

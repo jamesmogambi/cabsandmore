@@ -1,13 +1,18 @@
 // actions/services.js
 "use server";
 
-import { db } from "@/lib/firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 import { convertFirestoreData } from "@/lib/firebase-utils";
 
 export async function fetchServices() {
   try {
+    const { db } = await import("@/lib/firebase");
+
+    if (!db) {
+      return { success: false, services: [], error: "Firebase not configured" };
+    }
+
     const servicesRef = collection(db, "services");
     const q = query(servicesRef, orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(q);
