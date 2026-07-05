@@ -26,7 +26,7 @@ import MobileSideNav from "./MobileSideNav";
 import UserDropDownMenu from "./UserDropDownMenu";
 import LoginModal from "./Modals/LoginModal";
 import OTPVerificationModal from "./Modals/OTPVerificationModal";
-import Logo, { UltraBoldLogo } from "./Logo";
+import Logo, { MonochromeLogo, UltraBoldLogo } from "./Logo";
 
 // Import Clerk hooks
 import { useUser, useAuth, SignInButton, SignUpButton } from "@clerk/nextjs";
@@ -106,6 +106,7 @@ const Header = () => {
       <Link href="/">
         {/* <Logo /> */}
         <Logo variant="dark" />
+        {/* <MonochromeLogo variant="dark" /> */}
         {/* <Logo title="Cabs&More" size="md" showTagline={true} animated={true} /> */}
       </Link>
 

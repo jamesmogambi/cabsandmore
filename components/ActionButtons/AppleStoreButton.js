@@ -5,7 +5,6 @@ import React from "react";
 const AppleStoreButton = () => {
   return (
     <Link
-      Link
       href="https://apps.apple.com/us/app/your-app-name/id123456789"
       className="flex flex-row bg-black text-white rounded-xl p-2 py-1 flex-grow min-w-[180px] justify-center items-center gap-2 hover:bg-gray-800 transition-colors duration-200"
     >
