@@ -101,7 +101,7 @@ const Logo = ({
       <div className="flex flex-col leading-none">
         <h2
           className={cn(
-            " font-black tracking-tight uppercase leading-none transition-colors duration-300",
+            "  font-bold tracking-tight uppercase leading-none transition-colors duration-300",
             currentSize.text,
             currentVariant.text,
             // Extra boldness with text-shadow for darker appearance
@@ -160,7 +160,7 @@ export const GradientLogo = ({ title = "Cabs&More", size = "md" }) => {
         priority
         quality={80}
       />
-      <h2
+      <h1
         className={cn(
           "font-sans font-black tracking-tight uppercase leading-none",
           currentSize.text,
@@ -172,7 +172,7 @@ export const GradientLogo = ({ title = "Cabs&More", size = "md" }) => {
         }}
       >
         {title}
-      </h2>
+      </h1>
     </div>
   );
 };

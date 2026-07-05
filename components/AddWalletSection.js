@@ -14,7 +14,7 @@ const AddWalletSection = () => {
         <div className="bg-stonelighter py-8 flex justify-center items-center">
           <div className="flex flex-col items-center">
             <Label className="text-black text-lg">Current Balance</Label>
-            <span className="text-black text-lg font-bold">Ksh 7500.76</span>
+            <span className="text-black text-lg font-bold">Ksh 0.00</span>
           </div>
         </div>
         <AddMoneyForm className={"mt-8"} />

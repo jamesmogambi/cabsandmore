@@ -7,6 +7,7 @@ import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
 import ServicesWrapper from "@/components/ServicesWrapper";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Toaster } from "sonner";
 
 export default function RootLayout({ children }) {
   return (
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
             <div className="min-h-screen flex  flex-col">
               <Header />
               {children}
+              <Toaster position="top-right" richColors />
               <Footer />
             </div>
           </ServicesWrapper>

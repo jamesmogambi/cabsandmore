@@ -1,6 +1,6 @@
 {
   "name": "cabs-more",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -45,6 +45,7 @@
     "react-hook-form": "^7.51.3",
     "react-phone-input-2": "^2.15.1",
     "react-scroll-to-top": "^3.0.0",
+    "sonner": "^2.0.7",
     "svix": "^1.96.1",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
@@ -52,13 +53,13 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^8.0.1",
+    "@babel/eslint-parser": "^7.25.0",
     "@babel/preset-react": "^8.0.1",
-    "@eslint/js": "^10.0.1",
+    "@eslint/js": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^8.62.1",
     "@typescript-eslint/parser": "^8.62.1",
     "autoprefixer": "^10.0.1",
-    "eslint": "^9.39.4",
+    "eslint": "^9.0.0",
     "eslint-config-next": "^15.5.20",
     "globals": "^17.7.0",
     "postcss": "^8",

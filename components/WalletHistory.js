@@ -1,6 +1,6 @@
 import React from "react";
 import HomeSectionCard from "./HomeSectionCard";
-import { transcations } from "@/data/wallet";
+// import { transcations } from "@/data/wallet";
 import WalletHistoryItem from "./WalletHistoryItem";
 import {
   Pagination,
@@ -13,11 +13,12 @@ import {
 } from "@/components/ui/pagination";
 
 const WalletHistory = () => {
+  const transactions = [];
   return (
     <HomeSectionCard title={"User wallet histroy"}>
       <div className="bg-white p-3">
         <>
-          {transcations.map((i, k) => (
+          {transactions.map((i, k) => (
             <WalletHistoryItem key={k} transaction={i} />
           ))}
         </>{" "}
