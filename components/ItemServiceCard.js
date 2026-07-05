@@ -1,25 +1,77 @@
+// components/ItemServiceCard.jsx
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import {
+  Package,
+  Car,
+  Utensils,
+  ShoppingBag,
+  Wrench,
+  HeartPulse,
+  Sparkles,
+  Store,
+  ShieldCheck,
+} from "lucide-react";
 
-const ItemServiceCard = ({ className, item }) => {
-  const { name, image } = item;
+// Map service names to icons for fallback
+const iconMap = {
+  Transportation: Car,
+  "Food Delivery": Utensils,
+  "Grocery Stores": ShoppingBag,
+  "Home Services": Wrench,
+  Healthcare: HeartPulse,
+  "Beauty & Wellness": Sparkles,
+  "Online Store": Store,
+  "Verified Professionals": ShieldCheck,
+  "Courier Service": Package,
+  "Delivery Service": Truck,
+  "On-Demand Service": Sparkles,
+};
+
+// Add missing imports
+import { Truck } from "lucide-react";
+
+const ItemServiceCard = ({ className = "", item }) => {
+  const { name, image, icon } = item;
+  const [imageError, setImageError] = useState(false);
+
+  // Get icon from map or use Package as default
+  const IconComponent = iconMap[name] || iconMap["default"] || Package;
+
+  // Generate a safe slug for the URL
+  const slug = name?.toLowerCase().replace(/\s+/g, "-") || "service";
+
+  // Validate image URL
+  const isValidImage = image && image.trim() !== "" && !imageError;
+
   return (
     <Link
-      href={`service-booking/${name}`}
-      className="bg-white h-[130px] flex justify-center items-center"
+      href={`/service-booking/${slug}`}
+      className={`bg-white h-[130px] flex justify-center items-center rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-slate-200 hover:border-[#26C165] ${className}`}
     >
-      <div className="flex gap-3 px-4  flex-col items-center ">
-        <Image
-          src={image}
-          height={40}
-          width={40}
-          alt={`${name} image`}
-          quality={95}
-          priority
-          className="object-cover"
-        />
+      <div className="flex gap-3 px-4 flex-col items-center">
+        {/* Image or Icon Fallback */}
+        <div className="relative w-10 h-10 flex items-center justify-center">
+          {isValidImage ? (
+            <Image
+              src={image}
+              height={40}
+              width={40}
+              alt={`${name || "Service"} image`}
+              quality={80}
+              className="object-contain"
+              onError={() => setImageError(true)}
+              loading="lazy"
+            />
+          ) : (
+            <IconComponent className="w-8 h-8 text-[#26C165]" />
+          )}
+        </div>
 
-        <h5 className="text-black font-bold text-center  ">{name}</h5>
+        <h5 className="text-black font-bold text-center text-sm line-clamp-2">
+          {name || "Service"}
+        </h5>
       </div>
     </Link>
   );

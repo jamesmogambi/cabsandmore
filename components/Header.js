@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,7 +10,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 import {
   Menubar,
   MenubarContent,
@@ -105,7 +105,7 @@ const Header = () => {
     <div className="w-full p-6 pb-2 flex flex-row border-b-[1px] border-neutral-300 justify-around items-center">
       <Link href="/">
         {/* <Logo /> */}
-        <Logo />
+        <Logo variant="dark" />
         {/* <Logo title="Cabs&More" size="md" showTagline={true} animated={true} /> */}
       </Link>
 

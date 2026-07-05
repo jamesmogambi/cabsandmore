@@ -21,6 +21,7 @@ const RightSideBanner = ({ image, title, className }) => {
         </div>
         <div className="basis-full md:basis-1/2  p-8">
           <Image
+            alt={title}
             src={image}
             height={483}
             className="bg-white"

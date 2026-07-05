@@ -101,7 +101,7 @@ const Logo = ({
       <div className="flex flex-col leading-none">
         <h2
           className={cn(
-            "font-sans font-black tracking-tight uppercase leading-none transition-colors duration-300",
+            " font-black tracking-tight uppercase leading-none transition-colors duration-300",
             currentSize.text,
             currentVariant.text,
             // Extra boldness with text-shadow for darker appearance

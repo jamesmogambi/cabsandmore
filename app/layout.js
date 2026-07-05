@@ -2,7 +2,6 @@ import "@fontsource/source-sans-pro";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-// import ScrollToTop from "react-scroll-to-top";75
 import "react-phone-input-2/lib/style.css";
 import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -43,8 +42,7 @@ export default function RootLayout({ children }) {
               <Footer />
             </div>
           </ServicesWrapper>
-
-          <ScrollToTop smooth style={{ backgroundColor: "red" }} />
+          <ScrollToTop />
         </body>
       </html>
     </ClerkProvider>
