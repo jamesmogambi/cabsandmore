@@ -225,7 +225,7 @@ const Header = () => {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link href="/about-us" className={navigationMenuTriggerStyle()}>
+            <Link href="/about-us " className={navigationMenuTriggerStyle()}>
               <span className="text-base">About Us</span>
             </Link>
           </NavigationMenuItem>

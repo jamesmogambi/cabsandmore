@@ -54,18 +54,29 @@ const ItemServiceCard = ({ className = "", item }) => {
           {isValidImage ? (
             <Image
               src={iconImage}
-              height={45}
               width={45}
+              height={45}
               alt={`${name || "Service"} image`}
               quality={80}
               className="object-contain"
-              style={{ width: "40px", height: "auto" }} // Fix aspect ratio
               onError={() => setImageError(true)}
               loading="lazy"
-              // Add sizes for responsive images if needed
-              sizes="40px"
+              sizes="45px"
             />
           ) : (
+            // <Image
+            //   src={iconImage}
+            //   height={45}
+            //   width={45}
+            //   alt={`${name || "Service"} image`}
+            //   quality={80}
+            //   className="object-contain"
+            //   style={{ width: "auto", height: "auto" }} // Fix aspect ratio
+            //   onError={() => setImageError(true)}
+            //   loading="lazy"
+            //   // Add sizes for responsive images if needed
+            //   sizes="40px"
+            // />
             <IconComponent className="w-8 h-8 text-[#26C165]" />
           )}
         </div>
