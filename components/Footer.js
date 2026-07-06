@@ -18,6 +18,10 @@ const footerLinks = [
     path: "/contact-us",
   },
   {
+    name: "Careers",
+    path: "/careers",
+  },
+  {
     name: "Privacy Policy",
     path: "/privacy-policy",
   },

@@ -12,6 +12,7 @@ import {
   Sparkles,
   Store,
   ShieldCheck,
+  Truck,
 } from "lucide-react";
 
 // Map service names to icons for fallback
@@ -29,11 +30,8 @@ const iconMap = {
   "On-Demand Service": Sparkles,
 };
 
-// Add missing imports
-import { Truck } from "lucide-react";
-
 const ItemServiceCard = ({ className = "", item }) => {
-  const { name, image, icon } = item;
+  const { name, image, iconImage } = item;
   const [imageError, setImageError] = useState(false);
 
   // Get icon from map or use Package as default
@@ -43,7 +41,7 @@ const ItemServiceCard = ({ className = "", item }) => {
   const slug = name?.toLowerCase().replace(/\s+/g, "-") || "service";
 
   // Validate image URL
-  const isValidImage = image && image.trim() !== "" && !imageError;
+  const isValidImage = iconImage && iconImage.trim() !== "" && !imageError;
 
   return (
     <Link
@@ -55,14 +53,17 @@ const ItemServiceCard = ({ className = "", item }) => {
         <div className="relative w-10 h-10 flex items-center justify-center">
           {isValidImage ? (
             <Image
-              src={image}
-              height={40}
-              width={40}
+              src={iconImage}
+              height={45}
+              width={45}
               alt={`${name || "Service"} image`}
               quality={80}
               className="object-contain"
+              style={{ width: "40px", height: "auto" }} // Fix aspect ratio
               onError={() => setImageError(true)}
               loading="lazy"
+              // Add sizes for responsive images if needed
+              sizes="40px"
             />
           ) : (
             <IconComponent className="w-8 h-8 text-[#26C165]" />

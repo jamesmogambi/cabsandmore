@@ -13,13 +13,18 @@ const nextConfig = {
         hostname: "foxjekapp24.startuptrinity.com",
         port: "",
       },
-
       {
         protocol: "https",
         hostname: "img.clerk.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
     ],
+    qualities: [60, 75, 90, 80], // Add this line to allow both quality values
   },
 };
 
