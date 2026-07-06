@@ -99,9 +99,9 @@ import useServicesStore from "@/store/servicesStore";
 import { ChevronDown, Loader2 } from "lucide-react";
 
 const ItemServices = () => {
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [visibleCount, setVisibleCount] = useState(18);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const BATCH_SIZE = 8;
+  const BATCH_SIZE = 18;
 
   const services = useServicesStore((state) => state.services);
   const loading = useServicesStore((state) => state.loading);
