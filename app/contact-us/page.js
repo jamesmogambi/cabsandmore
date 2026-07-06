@@ -12,7 +12,7 @@ const page = () => {
 
         <p className="text-lg mt-10">
           <span className="font-[400]">Email us :</span>{" "}
-          <span className="text-lightgreen">foxdeliveryapp@gmail.com</span>
+          <span className="text-lightgreen">info@cabsandmore.com</span>
         </p>
       </div>
       <Separator className="bg-black" />
@@ -23,7 +23,7 @@ const page = () => {
 
         <p className="text-lg mt-10">
           <span className="font-[400]">Email us :</span>{" "}
-          <span className="text-lightgreen">foxdeliveryapp@gmail.com</span>
+          <span className="text-lightgreen">support@cabsandmore.com</span>
         </p>
       </div>
       <Separator className="bg-black" />

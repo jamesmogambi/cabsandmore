@@ -8,7 +8,7 @@ const ProcessWorkItem = ({ image = "", title, description, className }) => {
     <div
       className={cn(" flex flex-col justify-center items-center", className)}
     >
-      <Image src={image} height={200} width={300} priority />
+      <Image alt={title} src={image} height={200} width={300} priority />
       <Link className="text-[#111111] my-3  text-[22px]" href="">
         {title}
       </Link>

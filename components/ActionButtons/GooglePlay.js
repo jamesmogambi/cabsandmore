@@ -4,11 +4,11 @@ import Link from "next/link";
 const GooglePlay = () => {
   return (
     <Link href="">
-      <div className="px-3 py-1 flex flex-row gap-3 text-titledark border rounded-xl border-black  cursor-pointer hover:bg-black hover:text-white">
+      <div className="px-3 py-1 flex flex-row gap-3 text-titledark border-[0.5px] rounded-2xl border-black/20  cursor-pointer hover:bg-black hover:text-white">
         <Image
           width={30}
           height={30}
-          src={"/images/play-store-logo.webp"}
+          src={"/images/android-play.webp"}
           className="object-contain "
           alt="play-store-logo"
           quality={75}

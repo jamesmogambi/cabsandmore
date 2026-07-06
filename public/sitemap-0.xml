@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.cabsandmore.com/coupon-deals/coupon-lists</loc><lastmod>2025-01-10T11:02:01.678Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/contact-us</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/home/address</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/home/orders</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/home/manage-account</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/home/wallet</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/home/my-coupons</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/check-out</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/home/profile</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.cabsandmore.com/booking</loc><lastmod>2025-01-10T11:02:01.679Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/about-us</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/booking</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/careers</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/check-out</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/contact-us</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/coupon-deals/coupon-lists</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/home/address</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/home/manage-account</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/home/my-coupons</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/home/orders</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/home/profile</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/home/wallet</loc><lastmod>2026-07-06T13:56:14.201Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/privacy-policy</loc><lastmod>2026-07-06T13:56:14.202Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.cabsandmore.com/terms</loc><lastmod>2026-07-06T13:56:14.202Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

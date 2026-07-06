@@ -1,49 +1,88 @@
-import { deliveryServices } from "@/data/service";
+"use client";
+// import { deliveryServices } from "@/data/service";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 import GooglePlay from "./ActionButtons/GooglePlay";
 import AppleStore from "./ActionButtons/AppleStore";
+import Logo from "./Logo";
+import useServicesStore from "@/store/servicesStore";
 
 const footerLinks = [
   {
     name: "About Us",
-    path: "",
+    path: "/about-us",
   },
   {
     name: "Contact Us",
-    path: "",
+    path: "/contact-us",
+  },
+  {
+    name: "Careers",
+    path: "/careers",
   },
   {
     name: "Privacy Policy",
-    path: "",
+    path: "/privacy-policy",
   },
   {
     name: "Terms & Conditions",
-    path: "",
+    path: "/terms",
   },
 ];
+
 const Footer = () => {
-  const services = deliveryServices.slice(0, 14);
+  // Get services from store
+  const services = useServicesStore((state) => state.services);
+  const loading = useServicesStore((state) => state.loading);
+  const isInitialized = useServicesStore((state) => state.isInitialized);
+
+  // Get delivery services from store or fallback to static data
+  const deliveryServicesList = useMemo(() => {
+    // If store is initialized and has services, use them
+    if (isInitialized && !loading && services.length > 0) {
+      // Filter delivery services
+      const filteredDeliveryServices = services.filter(
+        (service) => service.category === "delivery",
+      );
+
+      // If there are delivery services in store, use them
+      if (filteredDeliveryServices.length > 0) {
+        return filteredDeliveryServices;
+      }
+    }
+
+    // Fallback to static data
+    return [];
+  }, [services, loading, isInitialized]);
+
+  // Get only active delivery services (optional)
+  const activeDeliveryServices = useMemo(() => {
+    return deliveryServicesList.filter(
+      (service) => service.status === "Active",
+    );
+  }, [deliveryServicesList]);
+
+  // Use active services if available, otherwise use all services
+  const displayServices = useMemo(() => {
+    // Prefer active services
+    if (activeDeliveryServices.length > 0) {
+      return activeDeliveryServices;
+    }
+    return deliveryServicesList;
+  }, [activeDeliveryServices, deliveryServicesList]);
+
+  // Limit to 14 services for display
+  const servicesToShow = displayServices.slice(0, 14);
+  const hasMore = displayServices.length > 14;
+
   return (
-    <div className="bg-gradient-to-r from-[#D6FDEB] to-[#FFF1E3] flex justify-center  items-center">
-      <div className="w-full  md:max-w-[1140px] ">
-        <div className="w-full flex flex-col md:flex-row    p-4">
+    <div className="bg-gradient-to-r from-[#D6FDEB] to-[#FFF1E3] flex justify-center items-center">
+      <div className="w-full md:max-w-[1140px]">
+        <div className="w-full flex flex-col md:flex-row p-4">
           <div className="p-8 w-full md:w-2/3 space-y-8">
             <div className="">
-              <Link href="">
-                <Image
-                  width={500}
-                  height={150}
-                  src={"/images/logo1.png"}
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                  }}
-                  alt="logo"
-                  quality={75}
-                />
-              </Link>
+              <Logo />
             </div>
             <div className="space-y-3">
               <h5 className="text-[24px] text-[#000000] font-[400]">
@@ -59,31 +98,44 @@ const Footer = () => {
               <h5 className="text-[24px] text-[#000000] font-[400]">
                 Quick Links
               </h5>
-              <div className="flex justify-start flex-wrap gap-y-2">
-                {services.map((i, k) => (
-                  <Link
-                    key={k}
-                    href=""
-                    className="text-[20px] hover:text-lightgreen hover:border-r-lightgreen text-titledark font-[500] border-r-[1px] px-2"
-                  >
-                    {i.name}
-                  </Link>
-                ))}
-                <Link
-                  href=""
-                  className="text-[20px] text-titledark font-[500] px-2 hover:text-lightgreen hover:border-lightgreen"
-                >
-                  see more
-                </Link>
-              </div>
+
+              {/* Show loading state while services are being fetched */}
+              {loading && !isInitialized ? (
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-lightgreen"></div>
+                  <span className="text-gray-500">Loading services...</span>
+                </div>
+              ) : servicesToShow.length === 0 ? (
+                <p className="text-gray-500">No delivery services available</p>
+              ) : (
+                <div className="flex justify-start flex-wrap gap-y-2">
+                  {servicesToShow.map((service) => (
+                    <Link
+                      key={service.id}
+                      href={`/stores/${service.id}`}
+                      className="text-[20px] hover:text-lightgreen hover:border-r-lightgreen text-titledark font-[500] border-r-[1px] px-2"
+                    >
+                      {service.name}
+                    </Link>
+                  ))}
+                  {hasMore && (
+                    <Link
+                      href="/services?category=delivery"
+                      className="text-[20px] text-titledark font-[500] px-2 hover:text-lightgreen hover:border-lightgreen"
+                    >
+                      see more
+                    </Link>
+                  )}
+                </div>
+              )}
             </div>
           </div>
-          <div className="p-8  space-y-4 md:space-y-0 w-full md:justify-between md:flex md:flex-col  md:flex-1 ">
+          <div className="p-8 space-y-4  w-full md:justify-between md:flex md:flex-col md:flex-1">
             {/* social media icons */}
             <div className="flex gap-3">
               <Link
                 href=""
-                className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-lightgreen "
+                className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-lightgreen"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -94,20 +146,20 @@ const Footer = () => {
                   height="24"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M12 5.5H9v-2a1 1 0 0 1 1-1h1V0H9a3 3 0 0 0-3 3v2.5H4V8h2v8h3V8h2l1-2.5z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
               </Link>
 
               <Link
                 href=""
-                className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-green-600 "
+                className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-green-600"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  enable-background="new 0 0 100 100"
+                  enableBackground="new 0 0 100 100"
                   viewBox="0 0 100 100"
                   id="linkedin"
                   width="24"
@@ -117,7 +169,7 @@ const Footer = () => {
                     <path
                       fill="#fff"
                       d="M90.479,2.513c-14.611-0.041-68.502,0.028-80.958,0C5.645,2.513,2.5,5.562,2.5,9.317v81.381
-			c0,3.756,3.145,6.802,7.021,6.802h80.958c3.878,0,7.021-3.046,7.021-6.803V9.317C97.5,5.562,94.357,2.513,90.479,2.513z"
+                        c0,3.756,3.145,6.802,7.021,6.802h80.958c3.878,0,7.021-3.046,7.021-6.803V9.317C97.5,5.562,94.357,2.513,90.479,2.513z"
                     ></path>
                     <path
                       fill="#09090b"
@@ -129,7 +181,7 @@ const Footer = () => {
 
               <Link
                 href=""
-                className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-green-600 "
+                className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-green-600"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -147,33 +199,38 @@ const Footer = () => {
               </Link>
             </div>
 
-            {/* description  */}
-            <div className="space-y-3 ">
+            {/* description */}
+            <div className="space-y-3  ">
               <h5 className="text-[24px] text-titledark font-[400]">
-                This Is Demo Version
+                About Cabs&More
               </h5>
-              <p className="text-[20px] text-[#616161] font-medium ">
-                Our purpose of this demo version app is that people can
-                understand what they getting from this app, how our app work,
-                what are the features we provider and many more.
+              <p className="text-[20px] text-[#616161] font-medium">
+                {/* Cabs&More is your trusted all-in-one super app for rides, food
+                delivery, groceries, parcel delivery, pharmacy, and professional
+                services. Our mission is to make everyday life easier by
+                connecting customers with reliable local providers through a
+                secure, fast, and convenient platform. */}
+                Cabs&More is your all-in-one super app for everyday services.
+                Book rides, order food and groceries, send parcels, hire trusted
+                professionals, and much more—all from one easy-to-use platform.
               </p>
             </div>
 
-            <div className="space-y-2.5 ">
-              <h5 className="text-[24px] text-titledark ">
+            <div className="space-y-2.5">
+              <h5 className="text-[24px] text-titledark">
                 Contact Sales Support
               </h5>
               <div className="flex cursor-pointer items-center gap-4 font-bold">
                 <Image
                   width={30}
                   height={30}
-                  src={"/images/whatsapp.webp "}
-                  className="object-contain "
+                  src={"/images/whatsapp.webp"}
+                  className="object-contain"
                   alt="whatsapp"
                   quality={75}
                 />
                 <span className="text-titledark2 text-[18px]">
-                  +254701694004
+                  +254743129621
                 </span>
               </div>
             </div>
@@ -187,7 +244,7 @@ const Footer = () => {
                 href={i.path}
                 className={`${
                   k < footerLinks.length - 1 &&
-                  "border-r border-titledark hover:border-lightgreen "
+                  "border-r border-titledark hover:border-lightgreen"
                 } text-[20px] text-titledark hover:text-lightgreen px-2.5`}
               >
                 {i.name}
@@ -196,8 +253,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex justify-center items-center mt-6 pb-8">
-          <Link href={""} className="text-titledark2 text-center ">
-            © Copyright 2024 White Label Fox.
+          <Link href={""} className="text-titledark2 text-center">
+            © Copyright 2026 Cabs&More. All rights reserved.
           </Link>
         </div>
       </div>

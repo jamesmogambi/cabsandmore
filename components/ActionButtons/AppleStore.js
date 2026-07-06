@@ -4,11 +4,11 @@ import Link from "next/link";
 const AppleStore = () => {
   return (
     <Link href="">
-      <div className="px-4  flex-row group flex  relative  py-1 gap-3   text-titledark border rounded-xl border-black  cursor-pointer hover:bg-black hover:text-white">
+      <div className="px-4  flex-row group flex  relative  py-1 gap-3   text-titledark  rounded-xl border-black/20 border-[0.5px]  cursor-pointer hover:bg-black hover:text-white">
         <Image
           width={30}
           height={30}
-          src={"/images/app-store-logo-black.webp "}
+          src={"/images/app-store-logo-black.webp"}
           className="object-contain absolute inset-y-0 h-full visible group-hover:invisible "
           alt="play-store-logo"
           quality={75}

@@ -11,27 +11,26 @@ export default function Home() {
   const foodstores = foodStores.slice(0, 3);
   const grocerystores = groceryStores.slice(0, 3);
   return (
-    <main className="flex min-h-screen flex-col justify-between ">
+    <main className="flex min-h-screen  flex-col justify-between ">
       <Banner />
       <Services />
       <ItemServices />
-      <Stores title="Food Delivery" data={foodstores} className="mb-6" />
-      <Stores title="Grocery Stores" data={grocerystores} />
+      <Stores title="Food Delivery" data={[]} className="my-10" />
+      <Stores title="Grocery Stores" data={[]} />
       <RightSideBanner
         title={"Register Your Self As Provider"}
-        image={
-          "https://foxjekapp24.startuptrinity.com/assets/front/img/register-provider-banner.webp"
-        }
+        image={"/images/provider-registration3.png"}
+        className="my-5 lg:my-10"
       />
       <LeftSideBanner
         title={"Register You Store"}
-        image={
-          "https://foxjekapp24.startuptrinity.com/assets/front/img/register-store-banner.webp"
-        }
+        image={"/images/store-registration.png"}
+        className="my-5 lg:my-10 "
       />
       <RightSideBanner
         title="Register Your Self As Driver / Delivery"
-        image="https://foxjekapp24.startuptrinity.com/assets/front/img/register-driver-banner.webp"
+        image="/images/driver-registration.png"
+        className="my-5 lg:my-10"
       />
       <ProcessWork />
     </main>
