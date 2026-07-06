@@ -103,8 +103,9 @@ const Header = () => {
   return (
     <div className="w-full p-6 pb-2 flex flex-row border-b-[1px] border-neutral-300 justify-around items-center">
       <Link href="/">
-        <Logo variant="dark" />
+        {/* <Logo variant="dark" /> */}
         {/* <GradientLogo /> */}
+        <Logo size="md" variant="dark" />
       </Link>
 
       <NavigationMenu className="hidden md:flex ">

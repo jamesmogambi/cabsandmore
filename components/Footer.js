@@ -88,7 +88,7 @@ const Footer = () => {
               <h5 className="text-[24px] text-[#000000] font-[400]">
                 Download Now From
               </h5>
-              <div className="flex flex-row gap-3">
+              <div className="flex flex-col md:flex-row gap-3">
                 <GooglePlay />
                 <AppleStore />
               </div>

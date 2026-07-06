@@ -23,9 +23,9 @@ const layout = ({ children }) => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="#26C165"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 class="lucide lucide-arrow-left"
               >
                 <path d="m12 19-7-7 7-7" />

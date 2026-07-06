@@ -22,9 +22,9 @@ const CouponCartItem = ({ item, className }) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="#0f172a"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             class="lucide lucide-x"
           >
             <path d="M18 6 6 18" />

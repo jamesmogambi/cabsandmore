@@ -26,9 +26,9 @@ const RemoveItemCartModal = ({ children }) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               class="lucide lucide-circle-alert text-yellow-600"
             >
               <circle cx="12" cy="12" r="10" />
