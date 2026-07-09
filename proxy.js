@@ -15,10 +15,10 @@ const isPublicRoute = createRouteMatcher([
 export default clerkMiddleware(async (auth, request) => {
   const { userId } = await auth();
 
-  if (!isPublicRoute(request) && !userId) {
-    const homeUrl = new URL("/", request.url);
-    return NextResponse.redirect(homeUrl);
-  }
+  // if (!isPublicRoute(request) && !userId) {
+  //   const homeUrl = new URL("/", request.url);
+  //   return NextResponse.redirect(homeUrl);
+  // }
 
   return NextResponse.next();
 });
