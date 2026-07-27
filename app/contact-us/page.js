@@ -1,6 +1,46 @@
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 
+export const metadata = {
+  title: "Contact Cabs&More – Kenya's All‑in‑One Super App",
+  description:
+    "Get in touch with Cabs&More. Reach us for media inquiries, business partnerships, or technical support.",
+  keywords: [
+    "contact Cabs&More",
+    "Cabs&More email",
+    "Cabs&More phone",
+    "support cabsandmore",
+    "Kenya super app contact",
+  ],
+  openGraph: {
+    title: "Contact Cabs&More – Kenya's All‑in‑One Super App",
+    description:
+      "Get in touch with Cabs&More. Reach us for media inquiries, business partnerships, or technical support.",
+    url: "https://cabsandmore.online/contact-us",
+    siteName: "Cabs&More",
+    type: "website",
+    locale: "en_KE",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Contact Cabs&More",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Cabs&More – Kenya's All‑in‑One Super App",
+    description:
+      "Get in touch with Cabs&More. Reach us for media inquiries, business partnerships, or technical support.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://cabsandmore.online/contact-us",
+  },
+};
+
 const page = () => {
   return (
     <div className="p-4 h-screen">

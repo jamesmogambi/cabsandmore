@@ -25,6 +25,47 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Terms of Service – Cabs&More",
+  description:
+    "Read Cabs&More's terms of service. By using our app, you agree to these terms governing rides, deliveries, home services, online stores, and all other services.",
+  keywords: [
+    "Cabs&More terms of service",
+    "terms and conditions Kenya",
+    "super app terms",
+    "Cabs&More legal",
+    "user agreement Kenya",
+    "terms of use",
+  ],
+  openGraph: {
+    title: "Terms of Service – Cabs&More",
+    description:
+      "Read Cabs&More's terms of service. By using our app, you agree to these terms governing rides, deliveries, home services, online stores, and all other services.",
+    url: "https://cabsandmore.online/terms",
+    siteName: "Cabs&More",
+    type: "website",
+    locale: "en_KE",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cabs&More Terms of Service",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service – Cabs&More",
+    description:
+      "Read Cabs&More's terms of service. By using our app, you agree to these terms governing rides, deliveries, home services, online stores, and all other services.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://cabsandmore.online/terms",
+  },
+};
+
 export default function TermsPage() {
   return (
     <main className="bg-white">

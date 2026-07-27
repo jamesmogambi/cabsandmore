@@ -122,6 +122,49 @@ const storeStats = [
   { value: "4.8★", label: "Average Rating" },
 ];
 
+export const metadata = {
+  title: "About Cabs&More – Kenya's All‑in‑One Super App",
+  description:
+    "Learn about Cabs&More, Kenya's all‑in‑one super app connecting you with rides, food delivery, home services, healthcare consultations, online stores, and more.",
+  keywords: [
+    "about Cabs&More",
+    "Kenya super app",
+    "about us",
+    "super app Kenya",
+    "ride hailing Kenya",
+    "food delivery Kenya",
+    "home services Kenya",
+    "video consultation Kenya",
+  ],
+  openGraph: {
+    title: "About Cabs&More – Kenya's All‑in‑One Super App",
+    description:
+      "Learn about Cabs&More, Kenya's all‑in‑one super app connecting you with rides, food delivery, home services, healthcare consultations, online stores, and more.",
+    url: "https://cabsandmore.online/about-us",
+    siteName: "Cabs&More",
+    type: "website",
+    locale: "en_KE",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Cabs&More",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Cabs&More – Kenya's All‑in‑One Super App",
+    description:
+      "Learn about Cabs&More, Kenya's all‑in‑one super app connecting you with rides, food delivery, home services, healthcare consultations, online stores, and more.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://cabsandmore.online/about-us",
+  },
+};
+
 export default function AboutPage() {
   return (
     <main className="bg-white">

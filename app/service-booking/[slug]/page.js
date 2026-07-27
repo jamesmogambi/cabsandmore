@@ -1,6 +1,10 @@
 "use client";
 import React from "react";
-import GoogleMapReact from "google-map-react";
+import dynamic from "next/dynamic";
+
+const GoogleMapReact = dynamic(() => import("google-map-react"), {
+  ssr: false,
+});
 
 const page = () => {
   const defaultProps = {
