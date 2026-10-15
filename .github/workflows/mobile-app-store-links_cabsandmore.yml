@@ -36,6 +36,8 @@ jobs:
           mkdir -p azure-deploy
           cp -r .next/standalone/* azure-deploy/
           cp -r public azure-deploy/
+          mkdir -p azure-deploy/.next
+          cp -r .next/static azure-deploy/.next/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
