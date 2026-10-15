@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --webpack && next-sitemap",
+    "build": "next build --webpack && next-sitemap && bash scripts/prepare-deploy.sh",
     "start": "next start",
     "lint": "eslint ."
   },
