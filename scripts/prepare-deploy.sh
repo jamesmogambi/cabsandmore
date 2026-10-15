@@ -7,7 +7,7 @@
 # loads no JavaScript or CSS, which looks like a broken site.
 #
 # Usage: bash scripts/prepare-deploy.sh
-# Output: .next/standalone  (upload its CONTENTS to Azure Web App)
+# Output: cabs-more.zip  (upload to Azure Web App)
 
 set -euo pipefail
 
@@ -75,6 +75,12 @@ FAIL=0
 if [[ $FAIL -eq 0 ]]; then
   echo "OK — total size: $(du -sh "$STANDALONE" | cut -f1)"
   echo "Upload the CONTENTS of $STANDALONE to your Azure Web App."
+
+  echo "==> Creating deployment zip"
+  ZIP_FILE="$ROOT/cabs-more.zip"
+  rm -f "$ZIP_FILE"
+  (cd "$STANDALONE" && zip -r "$ZIP_FILE" .)
+  echo "OK — zip created at: $ZIP_FILE ($(du -sh "$ZIP_FILE" | cut -f1))"
 else
   echo "Verification FAILED" >&2
   exit 1
