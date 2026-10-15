@@ -1,8 +1,18 @@
-import { adminDb } from "@/lib/firebase-admin";
+import { adminDb, isFirebaseReady } from "@/lib/firebase-admin";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
+    if (!isFirebaseReady || !adminDb) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Firebase is not initialized",
+        },
+        { status: 503 },
+      );
+    }
+
     await adminDb.collection("test").doc("connection").get();
     return NextResponse.json({
       success: true,
