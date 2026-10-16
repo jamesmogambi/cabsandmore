@@ -2,6 +2,8 @@ import DownloadSection from "@/components/Store/DownloadSection";
 import PartnerSection from "@/components/Store/PartnerSection";
 import StoreBanner from "@/components/Store/StoreBanner";
 import StoreList from "@/components/Store/StoreList";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Browse Stores – Food, Grocery & More | Cabs&More",
@@ -46,14 +48,22 @@ export const metadata = {
   },
 };
 
+const storesBreadcrumb = breadcrumbSchema([
+  { name: "Home", url: "https://cabsandmore.online" },
+  { name: "Stores", url: "https://cabsandmore.online/stores" },
+]);
+
 const page = () => {
   return (
-    <div className=" flex min-h-screen flex-col justify-between ">
-      <StoreBanner />
-      <StoreList />
-      <DownloadSection />
-      <PartnerSection />
-    </div>
+    <>
+      <JsonLd schema={storesBreadcrumb} id="stores-breadcrumb" />
+      <div className=" flex min-h-screen flex-col justify-between ">
+        <StoreBanner />
+        <StoreList />
+        <DownloadSection />
+        <PartnerSection />
+      </div>
+    </>
   );
 };
 

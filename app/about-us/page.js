@@ -24,6 +24,8 @@ import {
   Headphones,
 } from "lucide-react";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import { faqPageSchema, breadcrumbSchema } from "@/lib/seo";
 
 const services = [
   {
@@ -165,9 +167,53 @@ export const metadata = {
   },
 };
 
+// ---------- Structured Data ----------
+const aboutFaqs = [
+  {
+    question: "What is Cabs&More?",
+    answer:
+      "Cabs&More is Kenya's next-generation super-app that brings transportation, deliveries, home services, healthcare, beauty, online stores, and professional services together in one trusted platform.",
+  },
+  {
+    question: "When was Cabs&More founded?",
+    answer:
+      "Cabs&More was founded in 2024 with a mission to simplify everyday living by connecting customers with trusted service providers and businesses through innovative technology.",
+  },
+  {
+    question: "What services does Cabs&More offer?",
+    answer:
+      "We offer transportation (ride-hailing, boda boda, airport transfers), delivery (food, groceries, pharmacy, parcels), home services (electricians, plumbers, cleaners), healthcare (virtual consultations), beauty & wellness, online stores, and professional services.",
+  },
+  {
+    question: "Is Cabs&More available across Kenya?",
+    answer:
+      "Yes, Cabs&More operates across Kenya, connecting customers with verified professionals and businesses in Nairobi, Mombasa, Kisumu, Eldoret, and other major towns.",
+  },
+  {
+    question: "How does Cabs&More ensure service quality?",
+    answer:
+      "Every service provider on our platform is verified, and we maintain strict quality standards. We also feature customer ratings and reviews to help you make informed choices.",
+  },
+  {
+    question: "Can businesses create an online store on Cabs&More?",
+    answer:
+      "Yes! Our Online Store feature lets businesses create their own digital storefront, list products, manage inventory, accept M-Pesa and card payments, and reach customers across Kenya.",
+  },
+];
+
+const aboutStructuredData = [
+  faqPageSchema(aboutFaqs),
+  breadcrumbSchema([
+    { name: "Home", url: "https://cabsandmore.online" },
+    { name: "About Us", url: "https://cabsandmore.online/about-us" },
+  ]),
+];
+
 export default function AboutPage() {
   return (
-    <main className="bg-white">
+    <>
+      <JsonLd schema={aboutStructuredData} id="about-schema" />
+      <main className="bg-white">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-green-950 via-green-900 to-emerald-950">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#26C16540,transparent_40%)]" />
@@ -617,5 +663,6 @@ export default function AboutPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

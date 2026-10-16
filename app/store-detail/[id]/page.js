@@ -1,6 +1,8 @@
 import CategoryItemsSection from "@/components/Store/CategoryItemsSection";
 import StoreHeader from "@/components/Store/StoreHeader";
 import React from "react";
+import JsonLd from "@/components/JsonLd";
+import { localBusinessSchema, breadcrumbSchema } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { id } = params;
@@ -45,12 +47,30 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const page = () => {
+const page = ({ params }) => {
+  const storeId = params?.id || "store";
+  const storeStructuredData = [
+    localBusinessSchema({
+      name: `Store #${storeId} – Cabs&More`,
+      description:
+        "Browse products and place your order on this store through Cabs&More's online marketplace.",
+      url: `https://cabsandmore.online/store-detail/${storeId}`,
+    }),
+    breadcrumbSchema([
+      { name: "Home", url: "https://cabsandmore.online" },
+      { name: "Stores", url: "https://cabsandmore.online/stores" },
+      { name: `Store #${storeId}`, url: `https://cabsandmore.online/store-detail/${storeId}` },
+    ]),
+  ];
+
   return (
-    <div className="relative px-4 min-h-screen">
-      <StoreHeader />
-      <CategoryItemsSection />
-    </div>
+    <>
+      <JsonLd schema={storeStructuredData} id="store-detail-schema" />
+      <div className="relative px-4 min-h-screen">
+        <StoreHeader />
+        <CategoryItemsSection />
+      </div>
+    </>
   );
 };
 

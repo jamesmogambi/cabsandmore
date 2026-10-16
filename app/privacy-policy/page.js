@@ -23,6 +23,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Privacy Policy – Cabs&More",
@@ -65,9 +67,17 @@ export const metadata = {
   },
 };
 
+// ---------- Structured Data ----------
+const privacyBreadcrumb = breadcrumbSchema([
+  { name: "Home", url: "https://cabsandmore.online" },
+  { name: "Privacy Policy", url: "https://cabsandmore.online/privacy-policy" },
+]);
+
 export default function PrivacyPolicyPage() {
   return (
-    <main className="bg-white">
+    <>
+      <JsonLd schema={privacyBreadcrumb} id="privacy-breadcrumb" />
+      <main className="bg-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-green-950 via-green-900 to-emerald-950">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#26C16540,transparent_40%)]" />
@@ -672,5 +682,6 @@ export default function PrivacyPolicyPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

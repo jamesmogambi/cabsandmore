@@ -1,5 +1,7 @@
 import Cart from "@/components/Store/Cart";
 import DeliveryAddressSection from "@/components/Store/DeliveryAddressSection";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Check Out – Complete Your Order | Cabs&More",
@@ -41,18 +43,28 @@ export const metadata = {
   },
 };
 
+// ---------- Structured Data ----------
+const checkoutBreadcrumb = breadcrumbSchema([
+  { name: "Home", url: "https://cabsandmore.online" },
+  { name: "Stores", url: "https://cabsandmore.online/stores" },
+  { name: "Check Out", url: "https://cabsandmore.online/check-out" },
+]);
+
 const page = () => {
   return (
-    <div className="bg-stonelight min-h-screen">
-      <div className="flex flex-1 flex-col md:flex-row">
-        <div className=" px-4 py-7 w-full md:flex-1">
-          <DeliveryAddressSection />
-        </div>
-        <div className=" border-red-400 px-4 py-7 w-full md:w-2/6">
-          <Cart />
+    <>
+      <JsonLd schema={checkoutBreadcrumb} id="checkout-breadcrumb" />
+      <div className="bg-stonelight min-h-screen">
+        <div className="flex flex-1 flex-col md:flex-row">
+          <div className=" px-4 py-7 w-full md:flex-1">
+            <DeliveryAddressSection />
+          </div>
+          <div className=" border-red-400 px-4 py-7 w-full md:w-2/6">
+            <Cart />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

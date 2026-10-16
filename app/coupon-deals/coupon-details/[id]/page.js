@@ -1,6 +1,8 @@
 import CouponDetailSection from "@/components/CouponDetailSection";
 import { Button } from "@/components/ui/button";
 import React from "react";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { id } = params;
@@ -42,11 +44,21 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const page = () => {
+const page = ({ params }) => {
+  const couponId = params?.id || "coupon";
+  const couponBreadcrumb = breadcrumbSchema([
+    { name: "Home", url: "https://cabsandmore.online" },
+    { name: "Coupon Deals", url: "https://cabsandmore.online/coupon-deals/coupon-lists" },
+    { name: `Coupon #${couponId}`, url: `https://cabsandmore.online/coupon-deals/coupon-details/${couponId}` },
+  ]);
+
   return (
-    <div className="mb-6">
-      <CouponDetailSection />
-    </div>
+    <>
+      <JsonLd schema={couponBreadcrumb} id="coupon-detail-breadcrumb" />
+      <div className="mb-6">
+        <CouponDetailSection />
+      </div>
+    </>
   );
 };
 

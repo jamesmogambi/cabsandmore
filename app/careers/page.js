@@ -17,9 +17,48 @@ import {
   TrendingUp,
   Send,
 } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { faqPageSchema, breadcrumbSchema } from "@/lib/seo";
 
 const CareersPage = () => {
   const [selectedRole, setSelectedRole] = useState(null);
+
+  // ---------- Structured Data ----------
+  const careerFaqs = [
+    {
+      question: "How do I apply for a job at Cabs&More?",
+      answer:
+        "To apply for any position, please send your updated CV/Resume (PDF format preferred) and a brief cover letter explaining why you're a good fit to careers@cabsandmore.com. Include the job title in the subject line.",
+    },
+    {
+      question: "What is the typical response time for job applications?",
+      answer:
+        "We review all applications within 3-5 business days. If your qualifications match an open position, our hiring team will contact you to schedule an interview.",
+    },
+    {
+      question: "Does Cabs&More offer remote or hybrid work options?",
+      answer:
+        "Yes, many of our positions offer flexible working hours and remote or hybrid work options. Each job listing specifies the work arrangement.",
+    },
+    {
+      question: "What benefits does Cabs&More offer employees?",
+      answer:
+        "We offer competitive salaries, performance bonuses, flexible working hours, professional development opportunities, and a collaborative, innovative work environment.",
+    },
+    {
+      question: "Do I need prior experience to apply?",
+      answer:
+        "Requirements vary by position. Each job listing specifies the required experience level. We consider both experienced professionals and candidates with strong potential.",
+    },
+  ];
+
+  const careerStructuredData = [
+    faqPageSchema(careerFaqs),
+    breadcrumbSchema([
+      { name: "Home", url: "https://cabsandmore.online" },
+      { name: "Careers", url: "https://cabsandmore.online/careers" },
+    ]),
+  ];
 
   const jobOpenings = [
     {
@@ -96,7 +135,9 @@ const CareersPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <>
+      <JsonLd schema={careerStructuredData} id="careers-schema" />
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
       <section className="relative bg-[#26C165] text-white py-20 overflow-hidden">
         <div className="absolute inset-0 bg-black/5"></div>
@@ -371,6 +412,7 @@ const CareersPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

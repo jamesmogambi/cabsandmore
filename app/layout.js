@@ -8,6 +8,8 @@ import ServicesWrapper from "@/components/ServicesWrapper";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Toaster } from "sonner";
 import Script from "next/script";
+import JsonLd from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
 
 // ---------- SEO Metadata ----------
 export const metadata = {
@@ -170,12 +172,16 @@ export const metadata = {
   },
 };
 
+// ---------- Structured Data ----------
+const structuredData = [organizationSchema(), websiteSchema()];
+
 // ---------- Layout ----------
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
         <head>
+          <JsonLd schema={structuredData} id="organization-website-schema" strategy="beforeInteractive" />
           <Script
             strategy="beforeInteractive"
             dangerouslySetInnerHTML={{

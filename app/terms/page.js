@@ -24,6 +24,8 @@ import {
   Award,
 } from "lucide-react";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Terms of Service – Cabs&More",
@@ -66,9 +68,17 @@ export const metadata = {
   },
 };
 
+// ---------- Structured Data ----------
+const termsBreadcrumb = breadcrumbSchema([
+  { name: "Home", url: "https://cabsandmore.online" },
+  { name: "Terms of Service", url: "https://cabsandmore.online/terms" },
+]);
+
 export default function TermsPage() {
   return (
-    <main className="bg-white">
+    <>
+      <JsonLd schema={termsBreadcrumb} id="terms-breadcrumb" />
+      <main className="bg-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-green-950 via-green-900 to-emerald-950">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#26C16540,transparent_40%)]" />
@@ -703,5 +713,6 @@ export default function TermsPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }
