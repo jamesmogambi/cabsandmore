@@ -24,10 +24,61 @@ import {
   Award,
 } from "lucide-react";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
+
+export const metadata = {
+  title: "Terms of Service – Cabs&More",
+  description:
+    "Read Cabs&More's terms of service. By using our app, you agree to these terms governing rides, deliveries, home services, online stores, and all other services.",
+  keywords: [
+    "Cabs&More terms of service",
+    "terms and conditions Kenya",
+    "super app terms",
+    "Cabs&More legal",
+    "user agreement Kenya",
+    "terms of use",
+  ],
+  openGraph: {
+    title: "Terms of Service – Cabs&More",
+    description:
+      "Read Cabs&More's terms of service. By using our app, you agree to these terms governing rides, deliveries, home services, online stores, and all other services.",
+    url: "https://cabsandmore.online/terms",
+    siteName: "Cabs&More",
+    type: "website",
+    locale: "en_KE",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cabs&More Terms of Service",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service – Cabs&More",
+    description:
+      "Read Cabs&More's terms of service. By using our app, you agree to these terms governing rides, deliveries, home services, online stores, and all other services.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://cabsandmore.online/terms",
+  },
+};
+
+// ---------- Structured Data ----------
+const termsBreadcrumb = breadcrumbSchema([
+  { name: "Home", url: "https://cabsandmore.online" },
+  { name: "Terms of Service", url: "https://cabsandmore.online/terms" },
+]);
 
 export default function TermsPage() {
   return (
-    <main className="bg-white">
+    <>
+      <JsonLd schema={termsBreadcrumb} id="terms-breadcrumb" />
+      <main className="bg-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-green-950 via-green-900 to-emerald-950">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#26C16540,transparent_40%)]" />
@@ -662,5 +713,6 @@ export default function TermsPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

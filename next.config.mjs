@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -24,7 +26,6 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-    qualities: [60, 75, 90, 80], // Add this line to allow both quality values
   },
 };
 

@@ -3,6 +3,10 @@ import { headers } from "next/headers";
 import { adminDb } from "@/lib/firebase-admin";
 
 export async function POST(req) {
+  if (!adminDb) {
+    return new Response("Firebase Admin is not initialized", { status: 503 });
+  }
+
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {

@@ -1,0 +1,14 @@
+[
+{"name":"FIREBASE_PROJECT_ID","value":"super-app-prod-8942d","slotSetting":false},
+{"name":"FIREBASE_CLIENT_EMAIL","value":"firebase-adminsdk-fbsvc@super-app-prod-8942d.iam.gserviceaccount.com","slotSetting":false},
+{"name":"NEXT_PUBLIC_FIREBASE_API_KEY","value":"AIzaSyCF0dZcquFbAj3QACNLmkkCuk4PQx2oBK0","slotSetting":false},
+{"name":"NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN","value":"super-app-prod-8942d.firebaseapp.com","slotSetting":false},
+{"name":"NEXT_PUBLIC_FIREBASE_PROJECT_ID","value":"super-app-prod-8942d","slotSetting":false},
+{"name":"NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET","value":"super-app-prod-8942d.firebasestorage.app","slotSetting":false},
+{"name":"NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID","value":"1069167582669","slotSetting":false},
+{"name":"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY","value":"pk_test_bm90ZWQtY29icmEtOTQuY2xlcmsuYWNjb3VudHMuZGV2JA","slotSetting":false},
+{"name":"CLERK_SECRET_KEY","value":"sk_test_L63e3y4iahjcZTwgLhUhHUXIoNdDmBaFeGhDceHaWR","slotSetting":false},
+{"name":"NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL","value":"/","slotSetting":false},
+{"name":"NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL","value":"/","slotSetting":false},
+{"name":"NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN","value":"phc_rvaSKxXycfmfBrJNt3HErfJHbjzsxrnS47JmYPsWC8Wz","slotSetting":false},
+{"name":"NEXT_PUBLIC_POSTHOG_HOST","value":"https://us.i.posthog.com","slotSetting":false}]
