@@ -32,8 +32,7 @@ Logo palette (use sparingly, mainly in the logo and small accents):
 | Brand green | `#26C165` | `lightgreen` | Primary actions, links, icons, highlights |
 | Brand green (hover) | `#1FA855` | `hover:bg-[#1fa855]` | Hover/pressed state for primary buttons |
 | Mint | `#D4F5E3` | `from-[#D4F5E3]` | Hero background, soft brand surfaces |
-| Mint (footer start) | `#D6FDEB` | `from-[#D6FDEB]` | Footer gradient |
-| Peach (footer end) | `#FFF1E3` | `to-[#FFF1E3]` | Footer gradient |
+| Forest | `#0B1F14` | `bg-[#0B1F14]` | Footer background, dark contrast sections |
 | Ink | `#111827` | `text-[#111827]` | Headings, card titles |
 | Heading black | `#000000` | `titledark` | Strong headings |
 | Body | `#666666` | body default | Paragraph copy |
@@ -200,6 +199,18 @@ Use `components/Home/SectionHeading.js`:
 </span>
 ```
 
+### Footer
+
+The footer is a dark, high-contrast band that closes every page.
+
+- Background: `bg-[#0B1F14]` with a 4px brand gradient accent on top (`from-[#26C165] via-[#FFB81C] to-[#26C165]`).
+- Layout: 12-column grid on desktop (brand 4 / services 2 / company 2 / contact 4); 2-column on mobile with brand and contact spanning both.
+- Text: white headings (`text-white/50` uppercase labels), `text-white/70` links and body.
+- Social icons: 40px circles, `bg-white/10`, hover `bg-[#26C165]`.
+- App store buttons: `variant="light"` (white background, black text) via `GooglePlayButton` / `AppleStoreButton`.
+- Contact: phone, email, address, and opening hours with green icons.
+- Bottom bar: copyright, "Made in Kenya", legal links, and payment badges (M-Pesa, Visa, Mastercard).
+
 ---
 
 ## 8. Imagery
@@ -207,7 +218,7 @@ Use `components/Home/SectionHeading.js`:
 - Photography: bright, natural, Kenyan/urban context. Prefer real product screenshots over stock where possible.
 - App screenshots (`/images/login2.png`, `choose-service.png`, `book-service2.png`, `track3.png`) are displayed inside white `rounded-2xl` cards with `object-contain`.
 - Partner images (`driver-registration.png`, `store-registration.png`, `provider-registration3.png`) are 3:2 landscape; use `aspect-[3/2] object-cover`.
-- Hero image: `/images/banner6.png` (portrait). Display with `object-contain` and a soft green/amber glow behind it.
+- Hero image: `/images/banners/banner-phones.jpg` (2133×2347 portrait card). Display at ~440px wide with `rounded-[2rem]`, a subtle ring, and a soft green/amber glow behind it.
 - Always set meaningful `alt` text.
 - Use `next/image` with `sizes`; reserve `priority` for the hero image only.
 

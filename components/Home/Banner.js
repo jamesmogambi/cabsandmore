@@ -52,16 +52,16 @@ const Banner = () => {
         </div>
 
         <div className="relative hidden w-full md:block md:w-1/2">
-          <div className="relative mx-auto max-w-[460px]">
+          <div className="relative mx-auto max-w-[440px]">
             <div className="absolute inset-0 -z-10 scale-90 rounded-full bg-gradient-to-tr from-[#26C165]/25 to-[#FFB81C]/20 blur-3xl" />
             <Image
               alt="Cabs&More app showing rides, delivery, and everyday services"
-              src="/images/banner6.png"
-              width={590}
-              height={674}
+              src="/images/banners/banner-phones.jpg"
+              width={640}
+              height={704}
               priority
               quality={90}
-              className="relative h-auto w-full object-contain drop-shadow-2xl"
+              className="relative h-auto w-full rounded-[2rem] object-cover shadow-2xl ring-1 ring-black/5"
             />
             <div className="absolute -bottom-5 -left-6 hidden rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-xl backdrop-blur lg:block">
               <p className="text-[11px] font-bold uppercase tracking-wider text-[#9ca3af]">
