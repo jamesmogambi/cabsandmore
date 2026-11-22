@@ -10,7 +10,7 @@ A single source of truth for the visual language of the Cabs&More website and ap
 
 - **Personality:** friendly, fast, trustworthy, local.
 - **Voice:** clear, warm, benefit-led. Short sentences. British/Kenyan English.
-- **Logo:** `public/images/logo-mark.svg` — a four-colour pinwheel (red, blue, green, yellow) with white glyphs for ride, tasks, repairs, and food. Pair it with the `Cabs&More.` wordmark in the `Logo` component.
+- **Logo:** `public/images/logo-mark.svg` — a four-colour pinwheel (red, blue, green, yellow) with white glyphs for ride, tasks, repairs, and food. Pair it with the `Cabs&More.` wordmark in the `Logo` component: mixed-case Source Sans Pro 800, `tracking-tight`, `#0B1F14` with a flush `#26C165` period.
 
 Logo palette (use sparingly, mainly in the logo and small accents):
 
@@ -216,7 +216,7 @@ The footer is a dark, high-contrast band that closes every page.
 ## 8. Imagery
 
 - Photography: bright, natural, Kenyan/urban context. Prefer real product screenshots over stock where possible.
-- How-it-works illustrations: 800×1000 (4:5) PNGs in `/images/processWork/` (`how-1-sign-up.png`, `how-2-choose-a-service.png`, `how-3-book-and-pay.png`, `how-4-track-and-enjoy.png`); display in `aspect-[4/5]` rounded cards with `object-cover`.
+- How-it-works illustrations: 1600×1300 (16:13) PNGs in `/images/processWork/` (`how-1-sign-up.png`, `how-2-choose-a-service.png`, `how-3-book-and-pay.png`, `how-4-track-and-enjoy.png`); display in `aspect-[16/13]` rounded cards with `object-cover`.
 - Partner images: polished 1200×800 illustrations in `/images/partnerCTA/` (`why-4-live-tracking.png` for drivers, `why-1-all-in-one.png` for stores, `why-3-verified-professionals.png` for service providers); 3:2 landscape, use `aspect-[3/2] object-cover`.
 - Hero image: `/images/banners/banner-phones.jpg` (2133×2347 portrait card). Display at ~440px wide with `rounded-[2rem]`, a subtle ring, and a soft green/amber glow behind it.
 - Blog thumbnails: `/images/featured-services/*.jpg`, cropped with `aspect-[16/10] object-cover` in cards and `aspect-[21/9]` on post covers.
