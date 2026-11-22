@@ -11,13 +11,13 @@ const ProcessWorkItem = ({
   return (
     <div className={cn("flex flex-col items-center text-center", className)}>
       <div className="relative w-full max-w-[230px]">
-        <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-2 shadow-sm">
+        <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl border border-neutral-100 bg-white p-2 shadow-sm">
           <Image
             alt={title}
             src={image}
-            width={320}
-            height={240}
-            className="h-full w-full object-contain"
+            width={400}
+            height={500}
+            className="h-full w-full object-cover"
           />
         </div>
         <span className="absolute -left-3 -top-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#26C165] text-sm font-bold text-white shadow-lg ring-4 ring-white">

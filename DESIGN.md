@@ -216,7 +216,7 @@ The footer is a dark, high-contrast band that closes every page.
 ## 8. Imagery
 
 - Photography: bright, natural, Kenyan/urban context. Prefer real product screenshots over stock where possible.
-- App screenshots (`/images/login2.png`, `choose-service.png`, `book-service2.png`, `track3.png`) are displayed inside white `rounded-2xl` cards with `object-contain`.
+- How-it-works illustrations: 800×1000 (4:5) PNGs in `/images/processWork/` (`how-1-sign-up.png`, `how-2-choose-a-service.png`, `how-3-book-and-pay.png`, `how-4-track-and-enjoy.png`); display in `aspect-[4/5]` rounded cards with `object-cover`.
 - Partner images: polished 1200×800 illustrations in `/images/partnerCTA/` (`why-4-live-tracking.png` for drivers, `why-1-all-in-one.png` for stores, `why-3-verified-professionals.png` for service providers); 3:2 landscape, use `aspect-[3/2] object-cover`.
 - Hero image: `/images/banners/banner-phones.jpg` (2133×2347 portrait card). Display at ~440px wide with `rounded-[2rem]`, a subtle ring, and a soft green/amber glow behind it.
 - Always set meaningful `alt` text.
