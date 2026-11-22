@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import "react-phone-input-2/lib/style.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ServicesWrapper from "@/components/ServicesWrapper";
-import ScrollToTop from "@/components/ScrollToTop";
+import ScrollToTopBottom from "@/components/ScrollToTop";
 import { Toaster } from "sonner";
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
@@ -219,7 +219,7 @@ export default function RootLayout({ children }) {
               <Footer />
             </div>
           </ServicesWrapper>
-          <ScrollToTop />
+          <ScrollToTopBottom />
         </body>
       </html>
     </ClerkProvider>
