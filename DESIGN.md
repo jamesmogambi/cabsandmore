@@ -343,3 +343,12 @@ The landing page (`app/page.js`) is fully static and does not depend on Firestor
 - FAQ: 5 contact-specific accordion items; powers `faqPageSchema` in the page JSON-LD.
 - Closing: reuses `FinalCTA` (app download band).
 - SEO: updated metadata, `localBusinessSchema` + `breadcrumbSchema` + `faqPageSchema`.
+
+---
+
+## 17. Favicons & floating controls
+
+- Favicon source: `public/favicon.svg` (dark `#0B1F14` background with the four-colour pinwheel).
+- Generated assets: `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` (180), `android-chrome-192x192.png`, `android-chrome-512x512.png`, and `site.webmanifest`.
+- `app/layout.js` exposes the icon set plus `viewport.themeColor` (`#26C165`).
+- Single floating back-to-top button (`components/ScrollToTop.js`) appears after 300px of scroll; the scroll-to-bottom button was removed.
