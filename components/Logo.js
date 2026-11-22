@@ -75,7 +75,7 @@ const Logo = ({
 
       {/* Text Content */}
       <div className="flex flex-col leading-none">
-        <h2
+        <span
           className={cn(
             "font-bold tracking-tight uppercase leading-none transition-colors duration-300",
             currentSize.text,
@@ -84,7 +84,7 @@ const Logo = ({
         >
           {title}
           <span className="inline-block ml-0.5 text-[#26C165]">.</span>
-        </h2>
+        </span>
 
         {showTagline && (
           <p
@@ -129,7 +129,7 @@ export const GradientLogo = ({ title = "Cabs&More", size = "md" }) => {
         priority
         quality={80}
       />
-      <h1
+      <span
         className={cn(
           "font-sans font-black tracking-tight uppercase leading-none",
           textSizes[size],
@@ -137,7 +137,7 @@ export const GradientLogo = ({ title = "Cabs&More", size = "md" }) => {
         )}
       >
         {title}
-      </h1>
+      </span>
     </div>
   );
 };
@@ -175,7 +175,7 @@ export const MonochromeLogo = ({
         priority
         quality={80}
       />
-      <h2
+      <span
         className={cn(
           "font-sans font-black tracking-tight uppercase leading-none",
           textSizes[size],
@@ -183,7 +183,7 @@ export const MonochromeLogo = ({
         )}
       >
         {title}
-      </h2>
+      </span>
     </div>
   );
 };
@@ -235,7 +235,7 @@ export const UltraBoldLogo = ({ title = "Cabs&More", size = "lg" }) => {
         priority
         quality={80}
       />
-      <h2
+      <span
         className={cn(
           "font-sans font-black tracking-tight uppercase leading-none",
           textSizes[size],
@@ -243,7 +243,7 @@ export const UltraBoldLogo = ({ title = "Cabs&More", size = "lg" }) => {
         )}
       >
         {title}
-      </h2>
+      </span>
     </div>
   );
 };

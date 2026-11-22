@@ -1,12 +1,8 @@
-"use client";
-// import { deliveryServices } from "@/data/service";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useMemo } from "react";
 import GooglePlay from "./ActionButtons/GooglePlay";
 import AppleStore from "./ActionButtons/AppleStore";
 import Logo from "./Logo";
-import useServicesStore from "@/store/servicesStore";
 
 const footerLinks = [
   {
@@ -31,51 +27,16 @@ const footerLinks = [
   },
 ];
 
+const quickLinks = [
+  { name: "Ride", path: "/booking" },
+  { name: "Food Delivery", path: "/stores/food-delivery" },
+  { name: "Grocery", path: "/stores/grocery-delivery" },
+  { name: "Home Services", path: "/service-booking/home-cleaning" },
+  { name: "Parcel Delivery", path: "/booking" },
+  { name: "Coupon Deals", path: "/coupon-deals/coupon-lists" },
+];
+
 const Footer = () => {
-  // Get services from store
-  const services = useServicesStore((state) => state.services);
-  const loading = useServicesStore((state) => state.loading);
-  const isInitialized = useServicesStore((state) => state.isInitialized);
-
-  // Get delivery services from store or fallback to static data
-  const deliveryServicesList = useMemo(() => {
-    // If store is initialized and has services, use them
-    if (isInitialized && !loading && services.length > 0) {
-      // Filter delivery services
-      const filteredDeliveryServices = services.filter(
-        (service) => service.category === "delivery",
-      );
-
-      // If there are delivery services in store, use them
-      if (filteredDeliveryServices.length > 0) {
-        return filteredDeliveryServices;
-      }
-    }
-
-    // Fallback to static data
-    return [];
-  }, [services, loading, isInitialized]);
-
-  // Get only active delivery services (optional)
-  const activeDeliveryServices = useMemo(() => {
-    return deliveryServicesList.filter(
-      (service) => service.status === "Active",
-    );
-  }, [deliveryServicesList]);
-
-  // Use active services if available, otherwise use all services
-  const displayServices = useMemo(() => {
-    // Prefer active services
-    if (activeDeliveryServices.length > 0) {
-      return activeDeliveryServices;
-    }
-    return deliveryServicesList;
-  }, [activeDeliveryServices, deliveryServicesList]);
-
-  // Limit to 14 services for display
-  const servicesToShow = displayServices.slice(0, 14);
-  const hasMore = displayServices.length > 14;
-
   return (
     <div className="bg-gradient-to-r from-[#D6FDEB] to-[#FFF1E3] flex justify-center items-center">
       <div className="w-full md:max-w-[1140px]">
@@ -98,36 +59,17 @@ const Footer = () => {
               <h5 className="text-[24px] text-[#000000] font-[400]">
                 Quick Links
               </h5>
-
-              {/* Show loading state while services are being fetched */}
-              {loading && !isInitialized ? (
-                <div className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-lightgreen"></div>
-                  <span className="text-gray-500">Loading services...</span>
-                </div>
-              ) : servicesToShow.length === 0 ? (
-                <p className="text-gray-500">No delivery services available</p>
-              ) : (
-                <div className="flex justify-start flex-wrap gap-y-2">
-                  {servicesToShow.map((service) => (
-                    <Link
-                      key={service.id}
-                      href={`/stores/${service.id}`}
-                      className="text-[20px] hover:text-lightgreen hover:border-r-lightgreen text-titledark font-[500] border-r-[1px] px-2"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                  {hasMore && (
-                    <Link
-                      href="/services?category=delivery"
-                      className="text-[20px] text-titledark font-[500] px-2 hover:text-lightgreen hover:border-lightgreen"
-                    >
-                      see more
-                    </Link>
-                  )}
-                </div>
-              )}
+              <div className="flex justify-start flex-wrap gap-y-2">
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.path}
+                    className="text-[20px] hover:text-lightgreen hover:border-r-lightgreen text-titledark font-[500] border-r-[1px] px-2"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
           <div className="p-8 space-y-4  w-full md:justify-between md:flex md:flex-col md:flex-1">
@@ -179,7 +121,7 @@ const Footer = () => {
                     ></path>
                     <path
                       fill="#09090b"
-                      d="M53.453 82.005c0 0 0-23.878 0-23.879-.139-4.388 2.484-8.483 7.762-8.667 5.143 0 7.201 3.921 7.201 9.67v22.875h14.214V57.485c0-13.135-7.012-19.247-16.365-19.247-7.668 0-11.036 4.285-12.907 7.204l.095-6.2H39.239c.185 4.012-.001 42.763-.001 42.763L53.453 82.005zM31.37 63.461v-24.22H17.154v42.763h14.217C31.368 77.514 31.376 67.888 31.37 63.461zM24.265 33.404c4.956 0 8.042-3.284 8.042-7.387-.041-9.897-16.004-9.787-15.991-.001C16.305 30.151 19.476 33.455 24.265 33.404z"
+                      d="M53.453 82.005c0 0 0-23.878 0-23.879-.139-4.388 2.484-8.483 7.762-8.667 5.143 0 7.201 3.921 7.201 9.67v22.875h14.214V57.485c0-13.135-7.012-19.247-16.365-19.247-7.668 0-11.036 4.285-12.907 7.204l.095-6.2H39.239c.185 4.012-.001 42.763-.001 42.763L53.453 82.005zM31.37 63.461v-24.22H17.154v42.763h14.217C31.368 77.514 31.376 67.888 31.370 63.461zM24.265 33.404c4.956 0 8.042-3.284 8.042-7.387-.041-9.897-16.004-9.787-15.991-.001C16.305 30.151 19.476 33.455 24.265 33.404z"
                     ></path>
                   </g>
                 </svg>
@@ -214,11 +156,6 @@ const Footer = () => {
                 About Cabs&More
               </h5>
               <p className="text-[20px] text-[#616161] font-medium">
-                {/* Cabs&More is your trusted all-in-one super app for rides, food
-                delivery, groceries, parcel delivery, pharmacy, and professional
-                services. Our mission is to make everyday life easier by
-                connecting customers with reliable local providers through a
-                secure, fast, and convenient platform. */}
                 Cabs&More is your all-in-one super app for everyday services.
                 Book rides, order food and groceries, send parcels, hire trusted
                 professionals, and much more—all from one easy-to-use platform.
