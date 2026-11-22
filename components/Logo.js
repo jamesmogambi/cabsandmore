@@ -65,7 +65,7 @@ const Logo = ({
         <Image
           width={currentSize.image}
           height={currentSize.image}
-          src="/images/logo.png"
+          src="/images/logo-mark.svg"
           className="object-contain"
           alt={`${title} logo`}
           priority
@@ -123,7 +123,7 @@ export const GradientLogo = ({ title = "Cabs&More", size = "md" }) => {
       <Image
         width={sizes[size]}
         height={sizes[size]}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="transition-transform duration-300 group-hover:scale-110 object-contain"
         alt={`${title} logo`}
         priority
@@ -169,7 +169,7 @@ export const MonochromeLogo = ({
       <Image
         width={sizes[size]}
         height={sizes[size]}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="grayscale object-contain"
         alt={`${title} logo`}
         priority
@@ -195,7 +195,7 @@ export const CompactLogo = ({ title = "Cabs&More" }) => {
       <Image
         width={28}
         height={28}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="object-contain"
         alt={`${title} logo`}
         priority
@@ -229,7 +229,7 @@ export const UltraBoldLogo = ({ title = "Cabs&More", size = "lg" }) => {
       <Image
         width={sizes[size]}
         height={sizes[size]}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="transition-transform duration-300 hover:scale-110 object-contain"
         alt={`${title} logo`}
         priority
