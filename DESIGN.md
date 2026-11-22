@@ -219,6 +219,7 @@ The footer is a dark, high-contrast band that closes every page.
 - How-it-works illustrations: 800×1000 (4:5) PNGs in `/images/processWork/` (`how-1-sign-up.png`, `how-2-choose-a-service.png`, `how-3-book-and-pay.png`, `how-4-track-and-enjoy.png`); display in `aspect-[4/5]` rounded cards with `object-cover`.
 - Partner images: polished 1200×800 illustrations in `/images/partnerCTA/` (`why-4-live-tracking.png` for drivers, `why-1-all-in-one.png` for stores, `why-3-verified-professionals.png` for service providers); 3:2 landscape, use `aspect-[3/2] object-cover`.
 - Hero image: `/images/banners/banner-phones.jpg` (2133×2347 portrait card). Display at ~440px wide with `rounded-[2rem]`, a subtle ring, and a soft green/amber glow behind it.
+- Blog thumbnails: `/images/featured-services/*.jpg`, cropped with `aspect-[16/10] object-cover` in cards and `aspect-[21/9]` on post covers.
 - Always set meaningful `alt` text.
 - Use `next/image` with `sizes`; reserve `priority` for the hero image only.
 
@@ -317,3 +318,28 @@ The landing page (`app/page.js`) is fully static and does not depend on Firestor
 6. `PartnerCTA` — driver, store, and service-partner cards
 7. `FAQ` — visible accordion (also powers the FAQ JSON-LD)
 8. `FinalCTA` — download band
+
+---
+
+## 15. Blog
+
+- Routes: `/blog` (listing) and `/blog/[slug]` (post), both statically generated from `data/blogPosts.js`.
+- Components: `components/blog/PostCard.js` (card) and `components/blog/PostContent.js` (block renderer for `p`, `h2`, `h3`, `ul`, `ol`, `quote`, `callout`).
+- Listing: mint-gradient hero → overlapping featured story → 3-column latest grid → dark CTA.
+- Post: breadcrumb + category/title/excerpt/meta → 21:9 cover → 760px article body → author box + share row → related stories → CTA.
+- Imagery: `/images/featured-services/*.jpg` cropped to `aspect-[16/10] object-cover` in cards; `aspect-[21/9]` on the post cover.
+- SEO: `metadata` plus `JsonLd` (`blogSchema` on the listing; `articleSchema` + `breadcrumbSchema` on posts). Schema helpers live in `lib/seo/article.js`.
+- Navigation: "Blog" is in the desktop header (active green via `cn`), the mobile drawer, and the footer Company links.
+
+---
+
+## 16. Contact page
+
+- Route: `/contact-us` (static).
+- Hero: mint gradient, "We're here to help", plus quick contact chips (phone, email, hours).
+- Contact cards: 4-up grid (call, support email, business/partnerships, visit) with hover lift.
+- Form: `components/ContactForm.js` — name, email, topic, message. On submit it opens a pre-filled `mailto:` (`support@cabsandmore.com`, or `info@cabsandmore.com` for Partnership/Media) and shows a status note. No backend required.
+- Side panel: response time, booking-reference tip, privacy note, social links, and `CopyEmailButton` (`components/CopyEmailButton.js`).
+- FAQ: 5 contact-specific accordion items; powers `faqPageSchema` in the page JSON-LD.
+- Closing: reuses `FinalCTA` (app download band).
+- SEO: updated metadata, `localBusinessSchema` + `breadcrumbSchema` + `faqPageSchema`.

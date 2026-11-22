@@ -251,6 +251,13 @@ const MobileSideNav = () => {
             </SheetClose>
           </li>
 
+          {/* Blog */}
+          <li>
+            <SheetClose asChild>
+              <Link href="/blog">Blog</Link>
+            </SheetClose>
+          </li>
+
           {/* Contact Us */}
           <li>
             <SheetClose asChild>

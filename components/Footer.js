@@ -15,6 +15,7 @@ const serviceLinks = [
 
 const companyLinks = [
   { name: "About Us", href: "/about-us" },
+  { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
   { name: "Contact Us", href: "/contact-us" },
   { name: "Become a Partner", href: "/contact-us" },

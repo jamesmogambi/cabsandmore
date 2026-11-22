@@ -20,6 +20,7 @@ import Logo from "./Logo";
 import MobileSideNav from "./MobileSideNav";
 import UserDropDownMenu from "./UserDropDownMenu";
 import useServicesStore from "@/store/servicesStore";
+import { cn } from "@/lib/utils";
 
 const navLinkClass =
   "inline-flex h-10 items-center rounded-md px-3 text-[15px] font-semibold text-titledark transition-colors hover:text-lightgreen focus:text-lightgreen focus:outline-none";
@@ -112,7 +113,10 @@ const Header = () => {
             <NavigationMenuItem>
               <Link
                 href="/"
-                className={`${navLinkClass} ${pathname === "/" ? "text-lightgreen" : ""}`}
+                className={cn(
+                  navLinkClass,
+                  pathname === "/" && "text-lightgreen",
+                )}
               >
                 Home
               </Link>
@@ -163,7 +167,10 @@ const Header = () => {
             <NavigationMenuItem>
               <Link
                 href="/about-us"
-                className={`${navLinkClass} ${pathname === "/about-us" ? "text-lightgreen" : ""}`}
+                className={cn(
+                  navLinkClass,
+                  pathname === "/about-us" && "text-lightgreen",
+                )}
               >
                 About Us
               </Link>
@@ -171,8 +178,25 @@ const Header = () => {
 
             <NavigationMenuItem>
               <Link
+                href="/blog"
+                className={cn(
+                  navLinkClass,
+                  (pathname === "/blog" ||
+                    pathname.startsWith("/blog/")) &&
+                    "text-lightgreen",
+                )}
+              >
+                Blog
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <Link
                 href="/contact-us"
-                className={`${navLinkClass} ${pathname === "/contact-us" ? "text-lightgreen" : ""}`}
+                className={cn(
+                  navLinkClass,
+                  pathname === "/contact-us" && "text-lightgreen",
+                )}
               >
                 Contact Us
               </Link>
