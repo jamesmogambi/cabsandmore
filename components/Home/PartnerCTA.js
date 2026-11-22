@@ -8,7 +8,7 @@ const partners = [
     title: "Become a driver",
     description:
       "Earn on your own schedule. Sign up to drive or deliver with Cabs&More.",
-    image: "/images/driver-registration.png",
+    image: "/images/partnerCTA/why-4-live-tracking.png",
     cta: "Start earning",
     href: "/contact-us",
   },
@@ -16,7 +16,7 @@ const partners = [
     title: "Grow your business",
     description:
       "Reach more customers and manage orders in one simple dashboard.",
-    image: "/images/store-registration.png",
+    image: "/images/partnerCTA/why-1-all-in-one.png",
     cta: "Add your store",
     href: "/contact-us",
   },
@@ -24,7 +24,7 @@ const partners = [
     title: "Offer your services",
     description:
       "Connect with customers who need your skills and grow your client base.",
-    image: "/images/provider-registration3.png",
+    image: "/images/partnerCTA/why-3-verified-professionals.png",
     cta: "Become a partner",
     href: "/contact-us",
   },
