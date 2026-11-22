@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 const ProcessWorkItem = ({ image = "", title, description, className }) => {
@@ -9,9 +8,9 @@ const ProcessWorkItem = ({ image = "", title, description, className }) => {
       className={cn(" flex flex-col justify-center items-center", className)}
     >
       <Image alt={title} src={image} height={200} width={300} priority />
-      <Link className="text-[#111111] my-3  text-[22px]" href="">
+      <h3 className="text-[#111111] my-3  text-[22px] font-semibold">
         {title}
-      </Link>
+      </h3>
       <p className="max-w-[350px] text-center">{description}</p>
     </div>
   );

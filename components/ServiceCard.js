@@ -1,46 +1,36 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
 
 const ServiceCard = ({ service, ...props }) => {
   const { image, name, description, category } = service;
 
-  const router = useRouter();
+  const href =
+    category === "Transport"
+      ? "/booking"
+      : category === "On-demand"
+        ? `/stores/${name}`
+        : category === "Handyman"
+          ? `/service-booking/${name}`
+          : "#";
 
-  function handleNavigation() {
-    if (category === "Transport") {
-      router.push("/booking");
-    }
-    if (category === "On-demand") {
-      router.push(`/stores/${name}`);
-    }
-
-    if (category === "Handyman") {
-      router.push(`/service-booking/${name}`);
-    }
-  }
   return (
-    <div
-      className="border hover:border-neutral-400 hover:shadow-md group rounded-[5px] overflow-hidden border-neutral-300"
+    <Link
+      href={href}
+      className="group block rounded-[5px] overflow-hidden border border-neutral-300 hover:border-neutral-400 hover:shadow-md"
       {...props}
     >
-      <div className="w-full relative  h-[130px] overflow-hidden">
+      <div className="w-full relative h-[130px] overflow-hidden">
         <Image
           fill
           src={image}
-          className="object-cover  bg-[#00000080]"
-          alt="service-image"
+          className="object-cover bg-[#00000080]"
+          alt={name}
           quality={90}
         />
-        <div className=" flex group-hover:visible justify-center items-center absolute opacity-80 inset-0 invisible bg-neutral-800">
-          <Button
-            onClick={handleNavigation}
-            className="border  text-white py-2  border-white rounded-[7px] p-4"
-          >
+        <div className="flex justify-center items-center absolute inset-0 bg-neutral-800/60 opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100">
+          <span className="border text-white py-2 border-white rounded-[7px] px-4">
             Place Order
-          </Button>
+          </span>
         </div>
       </div>
 
@@ -48,7 +38,7 @@ const ServiceCard = ({ service, ...props }) => {
         <h4 className="text-[18px] font-bold text-black">{name}</h4>
         <p className="text-center text-[14px]">{description}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

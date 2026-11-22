@@ -134,7 +134,10 @@ const Footer = () => {
             {/* social media icons */}
             <div className="flex gap-3">
               <Link
-                href=""
+                href="https://www.facebook.com/cabsandmore"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Cabs&More on Facebook"
                 className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-lightgreen"
               >
                 <svg
@@ -154,7 +157,10 @@ const Footer = () => {
               </Link>
 
               <Link
-                href=""
+                href="https://www.linkedin.com/company/cabsandmore"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Cabs&More on LinkedIn"
                 className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-green-600"
               >
                 <svg
@@ -180,7 +186,10 @@ const Footer = () => {
               </Link>
 
               <Link
-                href=""
+                href="https://www.instagram.com/cabsandmore"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Cabs&More on Instagram"
                 className="p-3 cursor-pointer h-12 flex justify-center items-center w-12 rounded-full bg-black hover:bg-green-600"
               >
                 <svg
@@ -253,9 +262,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex justify-center items-center mt-6 pb-8">
-          <Link href={""} className="text-titledark2 text-center">
+          <p className="text-titledark2 text-center">
             © Copyright 2026 Cabs&More. All rights reserved.
-          </Link>
+          </p>
         </div>
       </div>
     </div>

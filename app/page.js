@@ -126,8 +126,17 @@ export default function Home() {
       <Banner />
       <Services />
       <ItemServices />
-      <Stores title="Food Delivery" data={[]} className="my-10" />
-      <Stores title="Grocery Stores" data={[]} />
+      <Stores
+        title="Food Delivery"
+        data={foodstores}
+        href="/stores/food-delivery"
+        className="my-10"
+      />
+      <Stores
+        title="Grocery Stores"
+        data={grocerystores}
+        href="/stores/grocery-delivery"
+      />
       <RightSideBanner
         title={"Register Your Self As Provider"}
         image={"/images/provider-registration3.png"}

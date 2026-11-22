@@ -53,8 +53,8 @@ const Services = () => {
   return (
     <div className="flex my-10 justify-center">
       <div className="w-full  md:max-w-[1140px] py-8">
-        <div className="flex flex-col mb-6 gap-6 justify-centerr items-center">
-          <h1 className="text-center text-[40px] text-black">Our Services</h1>
+        <div className="flex flex-col mb-6 gap-6 justify-center items-center">
+          <h2 className="text-center text-[40px] text-black">Our Services</h2>
           <p className="text-[18px] text-center max-w-[500px] leading-normal ">
             Dive into each service to understand them better. With this App,
             you’ll be able to make the most of each of these aspects.
