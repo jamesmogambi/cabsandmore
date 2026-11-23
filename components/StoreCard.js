@@ -33,10 +33,8 @@ const StoreCard = ({ data, className }) => {
               <h5 className="text-black text-[18px] font-bold">{name}</h5>
 
               <h6 className="text-[13px] text-[#868E96]">
-                {cuisineItems.map((i, k) => (
-                  <>{i} ,</>
-                ))}
-                <> ,More...</>
+                {cuisineItems.join(", ")}
+                {cuisines.length > 2 ? ", More..." : ""}
               </h6>
             </div>
             <div className="flex gap-2 items-center mt-7">
@@ -45,7 +43,7 @@ const StoreCard = ({ data, className }) => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                 >
                   <path
                     fillRule="evenodd"
@@ -64,7 +62,7 @@ const StoreCard = ({ data, className }) => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="#26c165"
-                  class="w-4 h-4"
+                  className="w-4 h-4"
                 >
                   <path
                     fillRule="evenodd"

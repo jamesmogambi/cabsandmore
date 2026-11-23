@@ -14,35 +14,35 @@ const Logo = ({
   // Fixed size configuration - no auto dimensions
   const sizes = {
     sm: {
-      image: 32,
-      text: "text-base",
+      image: 30,
+      text: "text-[17px]",
       gap: "gap-1.5",
       tagline: "text-[10px]",
     },
-    md: { image: 40, text: "text-xl", gap: "gap-2", tagline: "text-xs" },
-    lg: { image: 56, text: "text-3xl", gap: "gap-3", tagline: "text-sm" },
-    xl: { image: 72, text: "text-4xl", gap: "gap-4", tagline: "text-base" },
+    md: { image: 40, text: "text-[22px]", gap: "gap-2", tagline: "text-[11px]" },
+    lg: { image: 54, text: "text-[30px]", gap: "gap-2.5", tagline: "text-sm" },
+    xl: { image: 70, text: "text-[38px]", gap: "gap-3", tagline: "text-base" },
   };
 
   const variants = {
     default: {
-      text: "text-slate-900 font-black",
-      tagline: "text-slate-600 font-semibold",
-      hover: "hover:scale-105",
+      text: "text-[#0B1F14]",
+      tagline: "text-[#4b5563]",
+      hover: "hover:opacity-90",
     },
     light: {
-      text: "text-white font-black",
-      tagline: "text-slate-300 font-semibold",
-      hover: "hover:scale-105",
+      text: "text-white",
+      tagline: "text-white/70",
+      hover: "hover:opacity-90",
     },
     dark: {
-      text: "text-slate-900 font-black",
-      tagline: "text-slate-700 font-semibold",
-      hover: "hover:scale-105",
+      text: "text-[#0B1F14]",
+      tagline: "text-[#4b5563]",
+      hover: "hover:opacity-90",
     },
     minimal: {
-      text: "text-slate-900 font-black",
-      tagline: "text-slate-500 font-semibold",
+      text: "text-[#0B1F14]",
+      tagline: "text-[#6b7280]",
       hover: "hover:opacity-80",
     },
   };
@@ -65,9 +65,9 @@ const Logo = ({
         <Image
           width={currentSize.image}
           height={currentSize.image}
-          src="/images/logo.png"
+          src="/images/logo-mark.svg"
           className="object-contain"
-          alt={`${title} logo`}
+          alt=""
           priority
           quality={80}
         />
@@ -75,16 +75,16 @@ const Logo = ({
 
       {/* Text Content */}
       <div className="flex flex-col leading-none">
-        <h2
+        <span
           className={cn(
-            "font-bold tracking-tight uppercase leading-none transition-colors duration-300",
+            "font-extrabold tracking-tight leading-none transition-colors duration-300",
             currentSize.text,
             currentVariant.text,
           )}
         >
           {title}
-          <span className="inline-block ml-0.5 text-[#26C165]">.</span>
-        </h2>
+          <span className="text-[#26C165]">.</span>
+        </span>
 
         {showTagline && (
           <p
@@ -123,13 +123,13 @@ export const GradientLogo = ({ title = "Cabs&More", size = "md" }) => {
       <Image
         width={sizes[size]}
         height={sizes[size]}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="transition-transform duration-300 group-hover:scale-110 object-contain"
         alt={`${title} logo`}
         priority
         quality={80}
       />
-      <h1
+      <span
         className={cn(
           "font-sans font-black tracking-tight uppercase leading-none",
           textSizes[size],
@@ -137,7 +137,7 @@ export const GradientLogo = ({ title = "Cabs&More", size = "md" }) => {
         )}
       >
         {title}
-      </h1>
+      </span>
     </div>
   );
 };
@@ -169,13 +169,13 @@ export const MonochromeLogo = ({
       <Image
         width={sizes[size]}
         height={sizes[size]}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="grayscale object-contain"
         alt={`${title} logo`}
         priority
         quality={80}
       />
-      <h2
+      <span
         className={cn(
           "font-sans font-black tracking-tight uppercase leading-none",
           textSizes[size],
@@ -183,7 +183,7 @@ export const MonochromeLogo = ({
         )}
       >
         {title}
-      </h2>
+      </span>
     </div>
   );
 };
@@ -195,7 +195,7 @@ export const CompactLogo = ({ title = "Cabs&More" }) => {
       <Image
         width={28}
         height={28}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="object-contain"
         alt={`${title} logo`}
         priority
@@ -229,13 +229,13 @@ export const UltraBoldLogo = ({ title = "Cabs&More", size = "lg" }) => {
       <Image
         width={sizes[size]}
         height={sizes[size]}
-        src="/images/logo.png"
+        src="/images/logo-mark.svg"
         className="transition-transform duration-300 hover:scale-110 object-contain"
         alt={`${title} logo`}
         priority
         quality={80}
       />
-      <h2
+      <span
         className={cn(
           "font-sans font-black tracking-tight uppercase leading-none",
           textSizes[size],
@@ -243,7 +243,7 @@ export const UltraBoldLogo = ({ title = "Cabs&More", size = "lg" }) => {
         )}
       >
         {title}
-      </h2>
+      </span>
     </div>
   );
 };

@@ -1,50 +1,50 @@
 import ProcessWorkItem from "./ProcessWorkItem";
+import SectionHeading from "./SectionHeading";
+
+const steps = [
+  {
+    title: "Sign up",
+    description: "Download the app and create your account in minutes.",
+    image: "/images/processWork/how-1-sign-up.png",
+  },
+  {
+    title: "Choose a service",
+    description: "Pick from rides, delivery, home services and more.",
+    image: "/images/processWork/how-2-choose-a-service.png",
+  },
+  {
+    title: "Book and pay",
+    description: "See upfront pricing and pay securely with M-Pesa or card.",
+    image: "/images/processWork/how-3-book-and-pay.png",
+  },
+  {
+    title: "Track and enjoy",
+    description: "Follow your ride or delivery live, then rate your experience.",
+    image: "/images/processWork/how-4-track-and-enjoy.png",
+  },
+];
 
 const ProcessWork = () => {
   return (
-    <div className="lg:my-15 my-8">
-      <div className="max-w-[1140px] m-auto ">
-        <h2 className="text-center text-titledark2 text-[32px] mb-7">
-          How does Cabs&More Work
-        </h2>
+    <section className="bg-[#FAFAFA] py-16 md:py-24">
+      <div className="mx-auto w-full max-w-[1140px] px-4">
+        <SectionHeading
+          eyebrow="Get started"
+          title="How Cabs&More works"
+          description="From download to done in four simple steps."
+        />
 
-        <div className="space-y-8">
-          <div className="flex flex-wrap justify-center">
+        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {steps.map((step, index) => (
             <ProcessWorkItem
-              title={"Login OR Register"}
-              description={"Download the app and create accounts in a few min."}
-              image="/images/login2.png"
+              key={step.title}
+              number={index + 1}
+              {...step}
             />
-            <ProcessWorkItem
-              title="Choose Service"
-              description="Choose from our range of services to book ride/delivery/services done."
-              image="/images/choose-service.png"
-            />
-            <ProcessWorkItem
-              title="Book Service"
-              description="See your estimated cost in advance.A convenient way to pay with a card, cash or wallet."
-              image="/images/book-service2.png"
-            />
-          </div>
-          <div className="flex flex-wrap justify-center">
-            <ProcessWorkItem
-              title="Track Your Service"
-              description={
-                "Track your ride/service/delivery in real-time. Get in-app and real-time chat notifications."
-              }
-              image="/images/track3.png"
-            />
-            <ProcessWorkItem
-              image="/images/booking-completed2.png"
-              title="It s Completed"
-              description={
-                "Get the services done. Rate and share your reviews of your experience with service providers."
-              }
-            />
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

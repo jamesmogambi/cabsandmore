@@ -5,6 +5,11 @@ import { revalidatePath } from "next/cache";
 
 export async function getUserFromFirestore(clerkId) {
   try {
+    if (!adminDb) {
+      console.error("Firebase Admin is not initialized");
+      return null;
+    }
+
     if (!clerkId) {
       console.error("No clerkId provided");
       return null;
@@ -23,6 +28,11 @@ export async function getUserFromFirestore(clerkId) {
 
 export async function updateUserInFirestore(clerkId, data) {
   try {
+    if (!adminDb) {
+      console.error("Firebase Admin is not initialized");
+      return { success: false, error: "Firebase is not initialized" };
+    }
+
     if (!clerkId) {
       throw new Error("No clerkId provided");
     }

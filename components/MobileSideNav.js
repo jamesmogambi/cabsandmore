@@ -9,7 +9,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { ChevronDown, Mail, Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -27,12 +27,11 @@ import { MenubarTrigger } from "@radix-ui/react-menubar";
 import UserDropDownMenu from "./UserDropDownMenu";
 import LoginModal from "./Modals/LoginModal";
 import useServicesStore from "@/store/servicesStore";
-import { useUser, useAuth, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { useUser, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 const MobileSideNav = () => {
   // Use Clerk hooks
   const { isLoaded, isSignedIn, user } = useUser();
-  const { signOut } = useAuth();
 
   // Get services from store
   const services = useServicesStore((state) => state.services);
@@ -104,11 +103,21 @@ const MobileSideNav = () => {
 
   return (
     <Sheet>
-      <SheetTrigger>
-        <Menu className="text-green-500 w-7 h-7" />
+      <SheetTrigger
+        aria-label="Open menu"
+        className="flex h-9 w-9 items-center justify-center rounded-full text-titledark transition-colors hover:bg-stonelight hover:text-lightgreen"
+      >
+        <Menu className="h-6 w-6 text-lightgreen" />
       </SheetTrigger>
-      <SheetContent side="left" className="bg-[#363D42] border-none opacity-80">
-        <ul className="border-white text-xl text-white font-medium space-y-4">
+      <SheetContent
+        side="left"
+        className="w-[86%] border-none bg-[#1F2937] text-white sm:max-w-sm"
+      >
+        <SheetHeader className="sr-only">
+          <SheetTitle>Menu</SheetTitle>
+          <SheetDescription>Main navigation menu</SheetDescription>
+        </SheetHeader>
+        <ul className="text-xl font-medium space-y-4 text-white">
           {/* Home */}
           <li>
             <SheetClose asChild>
@@ -225,7 +234,7 @@ const MobileSideNav = () => {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <SheetClose asChild>
-                      <Link href="/">
+                      <Link href="/coupon-deals/coupon-lists">
                         Coupon Deals
                       </Link>
                     </SheetClose>
@@ -239,6 +248,13 @@ const MobileSideNav = () => {
           <li>
             <SheetClose asChild>
               <Link href="/about-us">About Us</Link>
+            </SheetClose>
+          </li>
+
+          {/* Blog */}
+          <li>
+            <SheetClose asChild>
+              <Link href="/blog">Blog</Link>
             </SheetClose>
           </li>
 
@@ -313,7 +329,11 @@ const MobileSideNav = () => {
               {/* Cart */}
               <li>
                 <SheetClose asChild>
-                  <Link href="/check-out" className="flex items-center gap-1">
+                  <Link
+                    href="/check-out"
+                    aria-label="Open cart"
+                    className="flex items-center gap-1"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -322,7 +342,6 @@ const MobileSideNav = () => {
                     >
                       <path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
                     </svg>
-                    <span>4</span>
                   </Link>
                 </SheetClose>
               </li>

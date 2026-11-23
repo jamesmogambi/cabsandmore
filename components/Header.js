@@ -1,6 +1,11 @@
 "use client";
-import Image from "next/image";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
+import { ChevronDown, ShoppingCart } from "lucide-react";
+import { useUser, SignInButton, SignUpButton } from "@clerk/nextjs";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,336 +13,254 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
-  MenubarTrigger,
-} from "./ui/menubar";
-
-import { ChevronDown } from "lucide-react";
+import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
+import { Button } from "@/components/ui/button";
+import Logo from "./Logo";
 import MobileSideNav from "./MobileSideNav";
 import UserDropDownMenu from "./UserDropDownMenu";
-import LoginModal from "./Modals/LoginModal";
-import OTPVerificationModal from "./Modals/OTPVerificationModal";
-import Logo, { GradientLogo, MonochromeLogo, UltraBoldLogo } from "./Logo";
-
-// Import Clerk hooks
-import { useUser, useAuth, SignInButton, SignUpButton } from "@clerk/nextjs";
-import { useState, useEffect, useMemo } from "react";
 import useServicesStore from "@/store/servicesStore";
+import { cn } from "@/lib/utils";
+
+const navLinkClass =
+  "inline-flex h-10 items-center rounded-md px-3 text-[15px] font-semibold text-titledark transition-colors hover:text-lightgreen focus:text-lightgreen focus:outline-none";
+
+const megaMenuLinkClass =
+  "block rounded-md px-2.5 py-1.5 text-sm text-titledark transition-colors hover:bg-stonelight hover:text-lightgreen";
+
+function ServiceColumn({ title, items, buildHref }) {
+  if (!items || items.length === 0) return null;
+  return (
+    <div className="flex min-w-0 flex-col">
+      <p className="px-2.5 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-lightgreen">
+        {title}
+      </p>
+      <ul className="max-h-64 space-y-0.5 overflow-y-auto pr-1">
+        {items.map((service) => (
+          <li key={service.id}>
+            <NavigationMenuLink asChild>
+              <Link href={buildHref(service.id)} className={megaMenuLinkClass}>
+                {service.name}
+              </Link>
+            </NavigationMenuLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 const Header = () => {
-  // Use Clerk hooks
   const { isLoaded, isSignedIn, user } = useUser();
-  const { signOut } = useAuth();
-
-  // Get services from store
+  const pathname = usePathname();
   const services = useServicesStore((state) => state.services);
-  const loading = useServicesStore((state) => state.loading);
 
-  // Group services by category
-  const groupedServices = useMemo(() => {
-    const groups = {
-      delivery: [],
-      "provider-service": [],
-      "video-consulting-services": [],
-      transport: [],
-    };
-
-    services.forEach((service) => {
-      if (service.category === "delivery") {
-        groups.delivery.push(service);
-      } else if (service.category === "provider-service") {
-        groups["provider-service"].push(service);
-      } else if (service.category === "video-consulting-services") {
-        groups["video-consulting-services"].push(service);
-      } else if (service.category === "transport") {
-        groups.transport.push(service);
-      }
-    });
-
-    return groups;
-  }, [services]);
-
-  // Get active services for display (optional - only show active services)
-  const activeGroupedServices = useMemo(() => {
-    const groups = {
-      delivery: [],
-      "provider-service": [],
-      "video-consulting-services": [],
-      transport: [],
-    };
-
-    services.forEach((service) => {
-      if (service.status === "Active") {
-        if (service.category === "delivery") {
-          groups.delivery.push(service);
-        } else if (service.category === "provider-service") {
-          groups["provider-service"].push(service);
-        } else if (service.category === "video-consulting-services") {
-          groups["video-consulting-services"].push(service);
-        } else if (service.category === "transport") {
-          groups.transport.push(service);
-        }
-      }
-    });
-
-    return groups;
-  }, [services]);
-
-  // For display purposes, we'll use active services if available, otherwise all services
   const displayServices = useMemo(() => {
-    const hasActive = Object.values(activeGroupedServices).some(
+    const groups = {
+      delivery: [],
+      "provider-service": [],
+      "video-consulting-services": [],
+      transport: [],
+    };
+    const activeGroups = {
+      delivery: [],
+      "provider-service": [],
+      "video-consulting-services": [],
+      transport: [],
+    };
+
+    services.forEach((service) => {
+      let key = null;
+      if (service.category === "delivery") key = "delivery";
+      else if (service.category === "provider-service")
+        key = "provider-service";
+      else if (service.category === "video-consulting-services")
+        key = "video-consulting-services";
+      else if (service.category === "transport") key = "transport";
+      if (!key) return;
+
+      groups[key].push(service);
+      if (service.status === "Active") activeGroups[key].push(service);
+    });
+
+    const hasActive = Object.values(activeGroups).some(
       (arr) => arr.length > 0,
     );
-    return hasActive ? activeGroupedServices : groupedServices;
-  }, [activeGroupedServices, groupedServices]);
+    return hasActive ? activeGroups : groups;
+  }, [services]);
+
+  const userName =
+    user?.firstName ||
+    user?.emailAddresses?.[0]?.emailAddress?.split("@")[0] ||
+    "User";
+  const userInitials = userName.slice(0, 2).toUpperCase();
 
   return (
-    <div className="w-full p-6 pb-2 flex flex-row border-b-[1px] border-neutral-300 justify-around items-center">
-      <Link href="/">
-        {/* <Logo variant="dark" /> */}
-        {/* <GradientLogo /> */}
-        <Logo size="md" variant="dark" />
-      </Link>
+    <header className="sticky top-0 z-40 w-full border-b border-neutral-200 bg-white/85 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-[1140px] items-center gap-3 px-4">
+        <div className="flex flex-1 items-center">
+          <Link
+            href="/"
+            aria-label="Cabs&More home"
+            className="flex flex-shrink-0 items-center"
+          >
+            <Logo size="md" variant="dark" />
+          </Link>
+        </div>
 
-      <NavigationMenu className="hidden md:flex ">
-        <NavigationMenuList className="">
-          <NavigationMenuItem>
-            <Link href="/" className={navigationMenuTriggerStyle()}>
-              <span className="text-base">Home</span>
-            </Link>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <Menubar className="border-none">
-              <MenubarMenu>
-                <MenubarTrigger className="text-black text-base cursor-pointer">
-                  <span className="text-black text-base">Service</span>{" "}
-                  <ChevronDown className="h-4 w-5" />{" "}
-                </MenubarTrigger>
-                <MenubarContent className="bg-white rounded-[5px] text-black border-slate-200 w-64 text-xl">
-                  {/* Transport/Ride Services */}
-                  {displayServices.transport &&
-                    displayServices.transport.length > 0 && (
-                      <MenubarSub>
-                        <MenubarSubTrigger className="cursor-pointer text-xl md:text-base rounded-[5px] focus:bg-neutral-100 data-[state=open]:bg-neutral-100 data-[state=open]:text-lightgreen focus:text-lightgreen">
-                          Ride Service
-                        </MenubarSubTrigger>
-                        <MenubarSubContent className="bg-white rounded-[5px] border-slate-200 w-48">
-                          {displayServices.transport.map((service) => (
-                            <MenubarItem
-                              key={service.id}
-                              className="focus:bg-neutral-100 rounded-[5px] text-base focus:text-lightgreen"
-                            >
-                              <Link href={`/booking/${service.id}`}>
-                                {service.name}
-                              </Link>
-                            </MenubarItem>
-                          ))}
-                        </MenubarSubContent>
-                      </MenubarSub>
-                    )}
-
-                  {/* Delivery Services */}
-                  {displayServices.delivery &&
-                    displayServices.delivery.length > 0 && (
-                      <MenubarSub>
-                        <MenubarSubTrigger className="cursor-pointer rounded-[5px] text-base data-[state=open]:bg-neutral-100 data-[state=open]:text-lightgreen focus:bg-neutral-100 focus:text-lightgreen">
-                          Delivery Service
-                        </MenubarSubTrigger>
-                        <MenubarSubContent className="bg-white rounded-[5px] overflow-auto max-h-44 border-slate-200 w-48">
-                          {displayServices.delivery.map((service) => (
-                            <MenubarItem
-                              key={service.id}
-                              className="focus:bg-neutral-100 rounded-[5px] text-base focus:text-lightgreen"
-                            >
-                              <Link href={`/stores/${service.id}`}>
-                                {service.name}
-                              </Link>
-                            </MenubarItem>
-                          ))}
-                        </MenubarSubContent>
-                      </MenubarSub>
-                    )}
-
-                  {/* Provider/Other Services */}
-                  {displayServices["provider-service"] &&
-                    displayServices["provider-service"].length > 0 && (
-                      <MenubarSub>
-                        <MenubarSubTrigger className="cursor-pointer rounded-[5px] text-base focus:bg-neutral-100 data-[state=open]:bg-neutral-100 focus:text-lightgreen data-[state=open]:text-lightgreen">
-                          Other Service
-                        </MenubarSubTrigger>
-                        <MenubarSubContent className="bg-white rounded-[5px] overflow-auto max-h-44 border-slate-200 w-48">
-                          {displayServices["provider-service"].map(
-                            (service) => (
-                              <MenubarItem
-                                key={service.id}
-                                className="focus:bg-neutral-100 rounded-[5px] text-base focus:text-lightgreen"
-                              >
-                                <Link href={`service-booking/${service.id}`}>
-                                  {service.name}
-                                </Link>
-                              </MenubarItem>
-                            ),
-                          )}
-                        </MenubarSubContent>
-                      </MenubarSub>
-                    )}
-
-                  {/* Video Consulting Services */}
-                  {displayServices["video-consulting-services"] &&
-                    displayServices["video-consulting-services"].length > 0 && (
-                      <MenubarSub>
-                        <MenubarSubTrigger className="cursor-pointer rounded-[5px] text-base focus:bg-neutral-100 data-[state=open]:bg-neutral-100 focus:text-lightgreen data-[state=open]:text-lightgreen">
-                          Video Consulting
-                        </MenubarSubTrigger>
-                        <MenubarSubContent className="bg-white rounded-[5px] overflow-auto max-h-44 border-slate-200 w-48">
-                          {displayServices["video-consulting-services"].map(
-                            (service) => (
-                              <MenubarItem
-                                key={service.id}
-                                className="focus:bg-neutral-100 rounded-[5px] text-base focus:text-lightgreen"
-                              >
-                                <Link href={`/consulting/${service.id}`}>
-                                  {service.name}
-                                </Link>
-                              </MenubarItem>
-                            ),
-                          )}
-                        </MenubarSubContent>
-                      </MenubarSub>
-                    )}
-
-                  {/* Coupon Deal - Leave as is */}
-                  <MenubarItem className="focus:bg-neutral-100 rounded-[5px] text-base focus:text-lightgreen">
-                    <Link href="/coupon-deals/coupon-lists">Coupon Deal</Link>
-                  </MenubarItem>
-                </MenubarContent>
-              </MenubarMenu>
-            </Menubar>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <Link href="/about-us " className={navigationMenuTriggerStyle()}>
-              <span className="text-base">About Us</span>
-            </Link>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <Link href="/contact-us" className={navigationMenuTriggerStyle()}>
-              <span className="text-base">Contact Us</span>
-            </Link>
-          </NavigationMenuItem>
-
-          {/* Show login/signup when not authenticated */}
-          {!isLoaded ? (
+        <NavigationMenu className="hidden flex-none md:flex">
+          <NavigationMenuList className="gap-1">
             <NavigationMenuItem>
-              <span className="text-black text-base px-4 py-2">Loading...</span>
+              <Link
+                href="/"
+                className={cn(
+                  navLinkClass,
+                  pathname === "/" && "text-lightgreen",
+                )}
+              >
+                Home
+              </Link>
             </NavigationMenuItem>
-          ) : !isSignedIn ? (
-            <>
-              <NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="h-10 bg-transparent px-3 text-[15px] font-semibold text-titledark hover:bg-transparent hover:text-lightgreen data-[state=open]:bg-transparent data-[state=open]:text-lightgreen">
+                Services
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <div className="w-[640px] max-w-[80vw] p-5">
+                  <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                    <ServiceColumn
+                      title="Ride Service"
+                      items={displayServices.transport}
+                      buildHref={(id) => `/booking/${id}`}
+                    />
+                    <ServiceColumn
+                      title="Delivery"
+                      items={displayServices.delivery}
+                      buildHref={(id) => `/stores/${id}`}
+                    />
+                    <ServiceColumn
+                      title="Home & Other"
+                      items={displayServices["provider-service"]}
+                      buildHref={(id) => `/service-booking/${id}`}
+                    />
+                    <ServiceColumn
+                      title="Video Consulting"
+                      items={displayServices["video-consulting-services"]}
+                      buildHref={(id) => `/consulting/${id}`}
+                    />
+                  </div>
+                  <div className="mt-3 border-t border-neutral-100 pt-3">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/coupon-deals/coupon-lists"
+                        className="inline-flex items-center rounded-md bg-stonelight px-3 py-2 text-sm font-semibold text-titledark transition-colors hover:bg-lightgreen hover:text-white"
+                      >
+                        View all coupon deals
+                      </Link>
+                    </NavigationMenuLink>
+                  </div>
+                </div>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <Link
+                href="/about-us"
+                className={cn(
+                  navLinkClass,
+                  pathname === "/about-us" && "text-lightgreen",
+                )}
+              >
+                About Us
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <Link
+                href="/blog"
+                className={cn(
+                  navLinkClass,
+                  (pathname === "/blog" ||
+                    pathname.startsWith("/blog/")) &&
+                    "text-lightgreen",
+                )}
+              >
+                Blog
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <Link
+                href="/contact-us"
+                className={cn(
+                  navLinkClass,
+                  pathname === "/contact-us" && "text-lightgreen",
+                )}
+              >
+                Contact Us
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <div className="flex flex-1 items-center justify-end gap-1.5">
+          <div className="hidden items-center gap-1.5 md:flex">
+            {!isLoaded ? null : !isSignedIn ? (
+              <>
                 <SignInButton mode="modal">
-                  <span
-                    className={`${navigationMenuTriggerStyle()} text-black cursor-pointer`}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="px-3 text-[15px] font-semibold text-titledark hover:bg-transparent hover:text-lightgreen"
                   >
-                    <span className="text-base">Login</span>{" "}
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                  </span>
+                    Log in
+                  </Button>
                 </SignInButton>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
                 <SignUpButton mode="modal">
-                  <span
-                    className={`${navigationMenuTriggerStyle()} text-black cursor-pointer`}
+                  <Button
+                    size="sm"
+                    className="rounded-full bg-lightgreen px-4 text-[15px] font-semibold text-white hover:bg-[#1fa855]"
                   >
-                    <span className="text-base">Sign Up</span>
-                  </span>
+                    Sign up
+                  </Button>
                 </SignUpButton>
-              </NavigationMenuItem>
-            </>
-          ) : (
-            <>
-              <NavigationMenuItem>
-                <Menubar className="border-none">
+              </>
+            ) : (
+              <>
+                <Menubar className="border-none bg-transparent p-0">
                   <MenubarMenu>
-                    <MenubarTrigger className="text-black text-base cursor-pointer">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-black text-base">
-                        {user?.firstName ||
-                          user?.emailAddresses?.[0]?.emailAddress?.split(
-                            "@",
-                          )[0] ||
-                          "User"}
-                      </span>{" "}
-                      <ChevronDown className="h-4 w-5" />{" "}
+                    <MenubarTrigger className="flex items-center gap-1.5 rounded-full px-2 py-1.5 text-[15px] font-semibold text-titledark hover:bg-stonelight data-[state=open]:bg-stonelight">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-lightgreen/10 text-[11px] font-bold uppercase text-lightgreen">
+                        {userInitials}
+                      </span>
+                      <span className="hidden max-w-[120px] truncate lg:inline">
+                        {userName}
+                      </span>
+                      <ChevronDown className="h-4 w-4" />
                     </MenubarTrigger>
-
                     <UserDropDownMenu />
                   </MenubarMenu>
                 </Menubar>
-              </NavigationMenuItem>
 
-              <NavigationMenuItem>
                 <Link
                   href="/check-out"
-                  className={navigationMenuTriggerStyle()}
+                  aria-label="Open cart"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full text-titledark transition-colors hover:bg-stonelight hover:text-lightgreen"
                 >
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="w-5 h-5"
-                    >
-                      <path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
-                    </svg>
-                  </span>
-                  <span className="text-base ml-1">4</span>{" "}
+                  <ShoppingCart className="h-5 w-5" />
+                  <span className="absolute right-0.5 top-0.5 h-2 w-2 rounded-full bg-lightgreen" />
                 </Link>
-              </NavigationMenuItem>
-            </>
-          )}
-        </NavigationMenuList>
-      </NavigationMenu>
+              </>
+            )}
+          </div>
 
-      <div className="md:hidden">
-        <MobileSideNav />
+          <div className="md:hidden">
+            <MobileSideNav />
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 

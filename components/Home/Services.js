@@ -1,82 +1,68 @@
-"use client";
 import ServiceCard from "../ServiceCard";
-import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 const services = [
   {
     name: "Taxi Booking",
     category: "Transport",
     description:
-      "With taxi booking services, customer has able to book their ride whenever and wherever they want.",
+      "Book a comfortable ride in minutes, wherever you are in the city.",
     image: "/images/featured-services/taxi-booking.jpg",
   },
-
   {
     name: "Bike Booking",
     category: "Transport",
     description:
-      "Do you want to ride a bike? You can book a bike without any hassle and enjoy your ride.",
+      "Beat traffic with quick, affordable boda boda rides at tap of a button.",
     image: "/images/featured-services/bike-booking.jpg",
   },
   {
     name: "Food Delivery",
     category: "On-demand",
     description:
-      "Get the portion of your favourite meal at your doorstep using the food delivery service.",
+      "Your favourite meals, delivered fresh and fast to your doorstep.",
     image: "/images/featured-services/food-delivery.jpg",
   },
   {
     name: "Courier Delivery",
     category: "Transport",
     description:
-      "Make sure to send/receive couriers and parcels across the cities or outside.",
+      "Send parcels and documents safely across town or nationwide.",
     image: "/images/featured-services/courier-delivery.jpg",
   },
   {
     name: "Grocery Delivery",
     category: "On-demand",
-
     description:
-      "With grocery delivery service, facilitate ordering fresh groceries from different stores.",
+      "Fresh groceries and daily essentials from local stores, delivered.",
     image: "/images/featured-services/grocery-delivery.jpg",
   },
   {
     name: "Home Cleaning",
     category: "Handyman",
     description:
-      "Need help to clean your home? Make your house clean and tidy with our house cleaning services.",
+      "Book trusted professionals to keep your home clean and tidy.",
     image: "/images/featured-services/home-cleaning.jpg",
   },
 ];
 
 const Services = () => {
   return (
-    <div className="flex my-10 justify-center">
-      <div className="w-full  md:max-w-[1140px] py-8">
-        <div className="flex flex-col mb-6 gap-6 justify-centerr items-center">
-          <h1 className="text-center text-[40px] text-black">Our Services</h1>
-          <p className="text-[18px] text-center max-w-[500px] leading-normal ">
-            Dive into each service to understand them better. With this App,
-            you’ll be able to make the most of each of these aspects.
-          </p>
-        </div>
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto w-full max-w-[1140px] px-4">
+        <SectionHeading
+          eyebrow="What we do"
+          title="One app for your everyday"
+          description="From getting across town to getting things done, Cabs&More brings the services you use most into one simple experience."
+        />
 
-        <motion.div
-          layout
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="w-full flex flex-col md:flex-row flex-wrap">
-            {services.map((i, k) => (
-              <div key={k} className=" w-full  md:basis-1/3 px-3 pb-6">
-                <ServiceCard service={i} key={k} />
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <ServiceCard key={service.name} service={service} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

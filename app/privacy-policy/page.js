@@ -18,15 +18,66 @@ import {
   Share2,
   AlertCircle,
   UserCheck,
-  ShieldCheck,
-  HeartPulse,
   CreditCard,
+  HeartPulse,
+  ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
+
+export const metadata = {
+  title: "Privacy Policy – Cabs&More",
+  description:
+    "Read Cabs&More's privacy policy to understand how we collect, use, and protect your personal data. We are committed to your privacy and data security.",
+  keywords: [
+    "Cabs&More privacy policy",
+    "data protection Kenya",
+    "privacy policy Kenya",
+    "personal data protection",
+    "M-Pesa privacy",
+    "app privacy policy",
+  ],
+  openGraph: {
+    title: "Privacy Policy – Cabs&More",
+    description:
+      "Read Cabs&More's privacy policy to understand how we collect, use, and protect your personal data.",
+    url: "https://cabsandmore.online/privacy-policy",
+    siteName: "Cabs&More",
+    type: "website",
+    locale: "en_KE",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cabs&More Privacy Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy – Cabs&More",
+    description:
+      "Read Cabs&More's privacy policy to understand how we collect, use, and protect your personal data.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://cabsandmore.online/privacy-policy",
+  },
+};
+
+// ---------- Structured Data ----------
+const privacyBreadcrumb = breadcrumbSchema([
+  { name: "Home", url: "https://cabsandmore.online" },
+  { name: "Privacy Policy", url: "https://cabsandmore.online/privacy-policy" },
+]);
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="bg-white">
+    <>
+      <JsonLd schema={privacyBreadcrumb} id="privacy-breadcrumb" />
+      <main className="bg-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-green-950 via-green-900 to-emerald-950">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#26C16540,transparent_40%)]" />
@@ -631,5 +682,6 @@ export default function PrivacyPolicyPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }
