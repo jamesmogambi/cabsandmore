@@ -12,20 +12,21 @@ import {
 import JsonLd from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo";
 import {
-  blogPosts,
-  getPostBySlug,
+  getBlogPostBySlug,
   getRelatedPosts,
-} from "@/data/blogPosts";
+  getAllBlogSlugs,
+} from "@/lib/sanity";
 import PostCard from "@/components/blog/PostCard";
-import PostContent from "@/components/blog/PostContent";
+import PortableText from "@/components/blog/PortableText";
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const slugs = await getAllBlogSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     return { title: "Story not found" };
@@ -42,11 +43,11 @@ export async function generateMetadata({ params }) {
       siteName: "Cabs&More",
       type: "article",
       locale: "en_KE",
-      publishedTime: post.date,
+      publishedTime: post.publishedAt,
       authors: [post.author],
       images: [
         {
-          url: post.image,
+          url: post.image || "/og-image.jpg",
           width: 1200,
           height: 630,
           alt: post.title,
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: [post.image || "/og-image.jpg"],
     },
     alternates: {
       canonical: `https://cabsandmore.online/blog/${post.slug}`,
@@ -67,14 +68,14 @@ export async function generateMetadata({ params }) {
 
 const BlogPostPage = async ({ params }) => {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
     return null;
   }
 
-  const relatedPosts = getRelatedPosts(post.slug);
+  const relatedPosts = await getRelatedPosts(slug);
   const shareUrl = `https://cabsandmore.online/blog/${post.slug}`;
   const shareText = post.title;
 
@@ -167,7 +168,7 @@ const BlogPostPage = async ({ params }) => {
         <div className="mx-auto -mt-2 w-full max-w-[1140px] px-4">
           <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-neutral-200 bg-[#F5F5F5] shadow-sm md:aspect-[21/9]">
             <Image
-              src={post.image}
+              src={post.image || "/og-image.jpg"}
               alt={post.title}
               fill
               sizes="(max-width: 768px) 100vw, 1140px"
@@ -178,7 +179,7 @@ const BlogPostPage = async ({ params }) => {
 
         {/* Article body */}
         <article className="mx-auto w-full max-w-[760px] px-4 py-12 md:py-16">
-          <PostContent blocks={post.content} />
+          <PortableText blocks={post.body} />
 
           {/* Author */}
           <div className="mt-12 flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-6 sm:flex-row sm:items-center">

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, CalendarDays, Clock } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import { blogSchema, breadcrumbSchema } from "@/lib/seo";
-import { blogPosts, featuredPost } from "@/data/blogPosts";
+import { getBlogPosts } from "@/lib/sanity";
 import PostCard from "@/components/blog/PostCard";
 
 export const metadata = {
@@ -48,17 +48,18 @@ export const metadata = {
   },
 };
 
-const BlogPage = () => {
-  const latestPosts = blogPosts.filter(
-    (post) => post.slug !== featuredPost.slug,
-  );
+const BlogPage = async () => {
+  const posts = await getBlogPosts();
+
+  const featuredPost = posts.find((p) => p.featured) || posts[0];
+  const latestPosts = posts.filter((p) => p.slug !== featuredPost.slug);
 
   const structuredData = [
     breadcrumbSchema([
       { name: "Home", url: "https://cabsandmore.online" },
       { name: "Blog", url: "https://cabsandmore.online/blog" },
     ]),
-    blogSchema(blogPosts),
+    blogSchema(posts),
   ];
 
   return (
@@ -93,7 +94,7 @@ const BlogPage = () => {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] text-[#4b5563]">
               <span className="inline-flex items-center gap-1.5">
                 <BookOpen className="h-4 w-4 text-[#1b7f45]" aria-hidden="true" />
-                {blogPosts.length} stories
+                {posts.length} stories
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <CalendarDays
@@ -116,7 +117,7 @@ const BlogPage = () => {
                 aria-label={`Read ${featuredPost.title}`}
               >
                 <Image
-                  src={featuredPost.image}
+                  src={featuredPost.image || "/og-image.jpg"}
                   alt={featuredPost.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
